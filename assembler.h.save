@@ -1,0 +1,17 @@
+#ifndef ASSEMBLER
+#define ASSEMBLER
+
+#include <stdio.h>
+#include <assert.h>
+
+#include "SortText.h"
+#include "enum.h"
+
+char* Assembler(void);
+void CheckCmd(char* str);
+size_t NumberOfLines(char* buffer, const size_t sizeBuf);
+
+char* DisAssembler(void);
+void Disasembling(FILE* disasmCmd, int* code, int* ip);
+
+#endif // ASSEMBLER

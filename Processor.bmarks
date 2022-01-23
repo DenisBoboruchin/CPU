@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BrowseTracker_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="processor.h" open="1" top="0" tabpos="3">
+		<Cursor position="240" topLine="0" />
+		<BrowseMarks positions="0,102,166,183,204,232,280,300,329" />
+		<Book_Marks positions="329,329" />
+	</File>
+	<File name="enum.h" open="1" top="0" tabpos="10">
+		<Cursor position="90" topLine="0" />
+		<BrowseMarks positions="14,30,134,102" />
+	</File>
+	<File name="MyStack.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="2260" topLine="0" />
+		<BrowseMarks positions="1675,1911,1913,2019" />
+	</File>
+	<File name="MyStack.h" open="1" top="0" tabpos="9">
+		<Cursor position="1556" topLine="0" />
+	</File>
+	<File name="assembler.h" open="1" top="0" tabpos="6">
+		<Cursor position="361" topLine="0" />
+		<BrowseMarks positions="40,104,127,172,206,295,322,380" />
+	</File>
+	<File name="commands.h" open="1" top="0" tabpos="11">
+		<Cursor position="344" topLine="0" />
+		<BrowseMarks positions="0,22,55,88,121,154,187,253,387" />
+	</File>
+	<File name="assembler.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="764" topLine="0" />
+		<BrowseMarks positions="498,900,967,1174,1442,1780,1914,2780,2940,3042,3165,3167,3248,3460,4067" />
+		<Book_Marks positions="153,1362" />
+	</File>
+	<File name="disassembler.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="2490" topLine="36" />
+		<BrowseMarks positions="782,1034,1097,2404" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="113" topLine="0" />
+		<BrowseMarks positions="91,148,151" />
+	</File>
+	<File name="SortText.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="1106" topLine="18" />
+		<BrowseMarks positions="742,924,1026,1028,1102,1121,1141,1446,1782,2046" />
+	</File>
+	<File name="processor.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="919" topLine="0" />
+		<BrowseMarks positions="638,669,776,812,885,2425,2588,2626,2705,2783,2794,2868" />
+	</File>
+</BrowseTracker_layout_file>

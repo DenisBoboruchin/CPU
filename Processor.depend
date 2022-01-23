@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1641823236 source:c:\programming\codeblocks\project\processor\processor\main.cpp
+	<stdio.h>
+	"processor.h"
+	"assembler.h"
+
+1641464183 c:\programming\codeblocks\project\processor\processor\processor.h
+	<stdio.h>
+	<assert.h>
+	<math.h>
+	"enum.h"
+	"MyStack.h"
+	"SortText.h"
+
+1641823143 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
+	"processor.h"
+
+1635516569 c:\programming\codeblocks\project\processor\processor\sorttext.h
+	<stdio.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<assert.h>
+	<ctype.h>
+	<math.h>
+
+1637530876 c:\programming\codeblocks\project\processor\processor\mystack.h
+	<stdio.h>
+	<assert.h>
+	<stdlib.h>
+
+1641461919 c:\programming\codeblocks\project\processor\processor\assembler.h
+	<stdio.h>
+	<string.h>
+	<assert.h>
+	"SortText.h"
+	"enum.h"
+
+1637915941 source:c:\programming\codeblocks\project\processor\processor\mystack.cpp
+	"MyStack.h"
+
+1641057265 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
+	"SortText.h"
+
+1641822785 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
+	"assembler.h"
+	"commands.h"
+
+1639308175 c:\programming\codeblocks\project\processor\processor\enum.h
+	"commands.h"
+
+1641239935 c:\programming\codeblocks\project\processor\processor\commands.h
+
+1641824113 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
+	"assembler.h"
+	"commands.h"
+

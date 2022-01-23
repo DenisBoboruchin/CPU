@@ -1,0 +1,17 @@
+push
+5
+in
+push
+rax
+out
+rpop
+rax
+out
+push 6
+push 2
+mul
+out
+hlt
+in
+in
+out
