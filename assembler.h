@@ -10,7 +10,7 @@
 
 char* Assembler(void);
 int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num);
-void CheckCmd(char* str, int j);
+int CheckCmd(char* str, int j);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
 char CheckRegs(char* str);
 

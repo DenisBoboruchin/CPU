@@ -5,7 +5,8 @@
 5   RPOP   rax
 6   OUT   
 7   PUSH   6
-8   PUSH   2
+8   PUSH   24
 9   MUL   
-10  OUT   
-11  HLT   
+10  SQRT  
+11  OUT   
+12  HLT   

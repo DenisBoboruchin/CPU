@@ -1,19 +1,19 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, args, ...)                           \
-    if (!stricmp((strings + j)->str, #name))                    \
-    {                                                           \
-        *(codeMassive + size) = (char) num;                        \
-        fprintf(code, "%04d |%5s| %d\n", j, #name, num);        \
-                                                                \
-        size += sizeof(char);                                   \
-                                                                \
-        if (num & 0x10)                                         \
-        {                                                       \
-            j++;                                                \
-            CheckType(code, (strings + j)->str, codeMassive, &size, num); \
-        }                                                       \
-        continue;                                               \
+#define DEF_CMD(name, num, args, ...)                                       \
+    if (!stricmp((strings + j)->str, #name))                                \
+    {                                                                       \
+        *(codeMassive + size) = (char) num;                                 \
+        fprintf(code, "%04d |%5s| %d\n", j, #name, num);                    \
+                                                                            \
+        size += sizeof(char);                                               \
+                                                                            \
+        if (num & 0x10)                                                     \
+        {                                                                   \
+            j++;                                                            \
+            CheckType(code, (strings + j)->str, codeMassive, &size, num);   \
+        }                                                                   \
+        continue;                                                           \
     }
 
 
@@ -47,7 +47,7 @@ char* Assembler(void)
 
     FILE* code = fopen(CODE, "w");
 
-    char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));             ///////////
+    char* codeMassive = (char*) calloc(numLines + 1, sizeof(double));
     int size = 0;
 
     for (int j = 0; j < numLines; j++)
@@ -100,25 +100,41 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
         *size += sizeof(char);
 
         fprintf(code, " | %c\n", result);
+
+        return 0;
     }
 
-    else
+    int value = 0;
+    if (sscanf(str, "%d", &value))
     {
-        int value = atoi(str);
         *((int*) (codeMassive + *size)) = value;
 
         *size += sizeof(int);
         fprintf(code, " | %d\n", value);
+
+        return 0;
     }
+
+    return CheckCmd(str, -17);
 }
 
-void CheckCmd(char* str, int j)
+int CheckCmd(char* str, int j)
 {
     assert (str != NULL);
-    assert (j >= 0);
 
-    if (strlen(str) > 0)
+    if ((strlen(str) > 0) && (j > 0))
+    {
         printf("%s is unknown command!\t(line %3d)\n", str, j + 1);
+
+        return 1;
+    }
+
+    if ((strlen(str) > 0) && (j == -17))
+    {
+        printf("%s is unknown argument\n", str);
+
+        return 1;
+    }
 }
 
 char CheckRegs(char* str)
@@ -137,25 +153,3 @@ char CheckRegs(char* str)
 
     return 0;
 }
-
-
-/*
-            if (char result = CheckRegs((strings + j)->str))    \
-            {                                                   \
-                *(codeMassive + size - 1) = (char) num | (1 << 5); \
-                *(codeMassive + size) = result;                    \
-                                                                \
-                size += sizeof(char);                           \
-                                                                \
-                fprintf(code, " | %c\n", result);               \
-            }                                                   \
-                                                                \
-            else                                                \
-            {                                                   \
-                int value = atoi((strings + j)->str);           \
-                *((int*) (codeMassive + size)) = value;            \
-                                                                \
-                size += sizeof(int);                            \
-                fprintf(code, " | %d\n", value);                \
-            }                                                   \
-*/

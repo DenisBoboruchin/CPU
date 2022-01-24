@@ -31,7 +31,7 @@
 	<assert.h>
 	<stdlib.h>
 
-1643015174 c:\programming\codeblocks\project\processor\processor\assembler.h
+1643017857 c:\programming\codeblocks\project\processor\processor\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -44,7 +44,7 @@
 1641057265 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
 	"SortText.h"
 
-1643015217 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
+1643017072 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
 	"assembler.h"
 	"commands.h"
 
