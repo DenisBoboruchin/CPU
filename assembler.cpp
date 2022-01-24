@@ -11,25 +11,7 @@
         if (num & 0x10)                                         \
         {                                                       \
             j++;                                                \
-                                                                \
-            if (char result = CheckRegs((strings + j)->str))    \
-            {                                                   \
-                *(codeMassive + size - 1) = (char) num | (1 << 5); \
-                *(codeMassive + size) = result;                    \
-                                                                \
-                size += sizeof(char);                           \
-                                                                \
-                fprintf(code, " | %c\n", result);               \
-            }                                                   \
-                                                                \
-            else                                                \
-            {                                                   \
-                int value = atoi((strings + j)->str);           \
-                *((int*) (codeMassive + size)) = value;            \
-                                                                \
-                size += sizeof(int);                            \
-                fprintf(code, " | %d\n", value);                \
-            }                                                   \
+            CheckType(code, (strings + j)->str, codeMassive, &size, num); \
         }                                                       \
         continue;                                               \
     }
@@ -108,6 +90,28 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     return numLines;
 }
 
+int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
+{
+    if (char result = CheckRegs(str))
+    {
+        *(codeMassive + *size - 1) = (char) num | (1 << 5);
+        *(codeMassive + *size) = result;
+
+        *size += sizeof(char);
+
+        fprintf(code, " | %c\n", result);
+    }
+
+    else
+    {
+        int value = atoi(str);
+        *((int*) (codeMassive + *size)) = value;
+
+        *size += sizeof(int);
+        fprintf(code, " | %d\n", value);
+    }
+}
+
 void CheckCmd(char* str, int j)
 {
     assert (str != NULL);
@@ -133,3 +137,25 @@ char CheckRegs(char* str)
 
     return 0;
 }
+
+
+/*
+            if (char result = CheckRegs((strings + j)->str))    \
+            {                                                   \
+                *(codeMassive + size - 1) = (char) num | (1 << 5); \
+                *(codeMassive + size) = result;                    \
+                                                                \
+                size += sizeof(char);                           \
+                                                                \
+                fprintf(code, " | %c\n", result);               \
+            }                                                   \
+                                                                \
+            else                                                \
+            {                                                   \
+                int value = atoi((strings + j)->str);           \
+                *((int*) (codeMassive + size)) = value;            \
+                                                                \
+                size += sizeof(int);                            \
+                fprintf(code, " | %d\n", value);                \
+            }                                                   \
+*/

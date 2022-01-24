@@ -3,7 +3,7 @@
 #define DEF_CMD(name, num, args, ...)                           \
     if (!stricmp((strings + j)->str, #name))                    \
     {                                                           \
-        *(codeMassive + j) = (char) num;                        \
+        *(codeMassive + size) = (char) num;                        \
         fprintf(code, "%04d |%5s| %d\n", j, #name, num);        \
                                                                 \
         size += sizeof(char);                                   \
@@ -11,11 +11,11 @@
         if (num & 0x10)                                         \
         {                                                       \
             j++;                                                \
-                                                                \
+            CheckType((strings + j)->str));                                         \
             if (char result = CheckRegs((strings + j)->str))    \
             {                                                   \
-                *(codeMassive + j - 1) = (char) num | (1 << 5); \
-                *(codeMassive + j) = result;                    \
+                *(codeMassive + size - 1) = (char) num | (1 << 5); \
+                *(codeMassive + size) = result;                    \
                                                                 \
                 size += sizeof(char);                           \
                                                                 \
@@ -25,7 +25,7 @@
             else                                                \
             {                                                   \
                 int value = atoi((strings + j)->str);           \
-                *((int*) (codeMassive + j)) = value;            \
+                *((int*) (codeMassive + size)) = value;            \
                                                                 \
                 size += sizeof(int);                            \
                 fprintf(code, " | %d\n", value);                \
@@ -106,6 +106,28 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     }
 
     return numLines;
+}
+
+int CheckType(char* str)
+{
+    if (char result = CheckRegs(str)    
+    {                                                   
+        *(codeMassive + size - 1) = (char) num | (1 << 5); 
+        *(codeMassive + size) = result;                    
+                                                        
+        size += sizeof(char);                           
+                                                                
+        fprintf(code, " | %c\n", result);               
+    }                                                   
+                                                                
+    else                                                
+    {                                                   
+        int value = atoi(str);           
+        *((int*) (codeMassive + size)) = value;            
+                                                                
+        size += sizeof(int);                            
+        fprintf(code, " | %d\n", value);                
+    }                      
 }
 
 void CheckCmd(char* str, int j)

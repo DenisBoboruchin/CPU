@@ -3,12 +3,14 @@
 #define DEF_CMD(name, num, args, ...)                       \
     case num:                                               \
     {                                                       \
-        fprintf(disasmCmd, "%3d\t%s", *ip + 1, #name);      \
+        (*index)++;                                         \
         (*ip)++;                                            \
                                                             \
-        if (args == 1)                                      \
-        {                                                   \
+        fprintf(disasmCmd, "%-4d%-6s", *index, #name);      \
                                                             \
+        if (num & 0x10)                                      \
+        {                                                   \
+            index++;                                                \
                                                             \
             if (num & 0x20)                                 \
             {                                               \
@@ -39,22 +41,24 @@ char* DisAssembler(void)
     char* code = (char*) CreateBuf(&sizeBuf, BINCODE);      /////////////////////////
 
     FILE* disasmCmd = fopen(DISASMCMD, "w");
+
     int ip = 0;
-                                                                        //size_t numCmd = sizeBuf / sizeof(int);
+    int index = 0;
+                                                                            //size_t numCmd = sizeBuf / sizeof(int);
     while (true)                                                        //for (int ip = 0; ip < numCmd; ip++)
     {
         if (*(code + ip) == (char) CMD_HLT)
         {
-            fprintf(disasmCmd, "%3d\tHLT", ip + 1);
+            fprintf(disasmCmd, "%-4d%-6s", index + 1, "HLT");
 
             break;
         }
 
-        Disasembling(disasmCmd, code, &ip);
+        Disasembling(disasmCmd, code, &ip, &index);
     }
 }
 
-void Disasembling(FILE* disasmCmd, char* code, int* ip)            //////////
+void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)            //////////
 {
     assert (disasmCmd != NULL);
     assert (code != NULL);
