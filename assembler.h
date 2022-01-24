@@ -13,6 +13,7 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num);
 int CheckCmd(char* str, int j);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
 char CheckRegs(char* str);
+int CheckCorrect(char num);
 
 char* DisAssembler(void);
 void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index);

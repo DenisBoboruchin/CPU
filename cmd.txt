@@ -4,7 +4,7 @@ in
 push
 rax
 out
-rpop
+pop
 rax
 out
 push 6

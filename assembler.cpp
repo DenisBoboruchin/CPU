@@ -107,6 +107,7 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
     int value = 0;
     if (sscanf(str, "%d", &value))
     {
+        CheckCorrect(num);
         *((int*) (codeMassive + *size)) = value;
 
         *size += sizeof(int);
@@ -152,4 +153,12 @@ char CheckRegs(char* str)
         return 4;
 
     return 0;
+}
+
+int CheckCorrect(char num)
+{
+    if (num & 0x08)
+        printf("incorrect argument!\n");
+
+    return 1;
 }

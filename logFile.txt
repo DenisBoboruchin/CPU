@@ -16,12 +16,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -54,12 +54,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -92,12 +92,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -130,12 +130,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -168,12 +168,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -206,12 +206,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -244,12 +244,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -281,17 +281,17 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 153;
-	stack hash: 2AF2C1E;
+	data  hash: 178;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
-		*[001] = 4;
+		*[001] = 5;
 		 [002] = -1;
 		 [003] = -1;
 		 [004] = -1;
@@ -319,17 +319,17 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 153;
-	stack hash: 2AF2C1E;
+	data  hash: 178;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
-		*[001] = 4;
+		*[001] = 5;
 		 [002] = -1;
 		 [003] = -1;
 		 [004] = -1;
@@ -357,17 +357,17 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 153;
-	stack hash: 2AF2C1E;
+	data  hash: 178;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
-		*[001] = 4;
+		*[001] = 5;
 		 [002] = -1;
 		 [003] = -1;
 		 [004] = -1;
@@ -395,17 +395,17 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 153;
-	stack hash: 2AF2C1E;
+	data  hash: 178;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
-		*[001] = 4;
+		*[001] = 5;
 		 [002] = -1;
 		 [003] = -1;
 		 [004] = -1;
@@ -434,12 +434,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -472,12 +472,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -510,12 +510,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -548,12 +548,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: B9;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 5;
@@ -586,12 +586,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -624,12 +624,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -662,12 +662,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -700,12 +700,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -737,16 +737,16 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 94;
-	stack hash: 2AF2BF5;
+	data  hash: B9;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
-		*[000] = 4;
+		*[000] = 5;
 		 [001] = -1;
 		 [002] = -1;
 		 [003] = -1;
@@ -775,16 +775,16 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 94;
-	stack hash: 2AF2BF5;
+	data  hash: B9;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
-		*[000] = 4;
+		*[000] = 5;
 		 [001] = -1;
 		 [002] = -1;
 		 [003] = -1;
@@ -813,16 +813,16 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 94;
-	stack hash: 2AF2BF5;
+	data  hash: B9;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
-		*[000] = 4;
+		*[000] = 5;
 		 [001] = -1;
 		 [002] = -1;
 		 [003] = -1;
@@ -851,16 +851,16 @@ stack[0064FE98]
 {
 	left  canary for stack: C0FFEE1;
 
-	data  hash: 94;
-	stack hash: 2AF2BF5;
+	data  hash: B9;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
-		*[000] = 4;
+		*[000] = 5;
 		 [001] = -1;
 		 [002] = -1;
 		 [003] = -1;
@@ -890,12 +890,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -928,12 +928,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -966,12 +966,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1004,12 +1004,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1042,12 +1042,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1080,12 +1080,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1118,12 +1118,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1156,12 +1156,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1194,12 +1194,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 45C;
-	stack hash: 2AF2C1E;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1232,12 +1232,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 45C;
-	stack hash: 2AF2C1E;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1270,12 +1270,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 45C;
-	stack hash: 2AF2C1E;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1308,12 +1308,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 45C;
-	stack hash: 2AF2C1E;
+	stack hash: 1CB2C1E;
 
 	size:     2;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1346,12 +1346,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1384,12 +1384,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1422,12 +1422,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1460,12 +1460,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: DE;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 6;
@@ -1498,12 +1498,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1536,12 +1536,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1574,12 +1574,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1612,12 +1612,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1650,12 +1650,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 14D0;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 144;
@@ -1688,12 +1688,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 14D0;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 144;
@@ -1726,12 +1726,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 14D0;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 144;
@@ -1764,12 +1764,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 14D0;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 144;
@@ -1802,12 +1802,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1840,12 +1840,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1878,12 +1878,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1916,12 +1916,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -1954,12 +1954,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 1BC;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 12;
@@ -1992,12 +1992,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 1BC;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 12;
@@ -2030,12 +2030,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 1BC;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 12;
@@ -2068,12 +2068,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 1BC;
-	stack hash: 2AF2BF5;
+	stack hash: 1CB2BF5;
 
 	size:     1;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		*[000] = 12;
@@ -2106,12 +2106,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -2144,12 +2144,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
@@ -2182,12 +2182,12 @@ stack[0064FE98]
 	left  canary for stack: C0FFEE1;
 
 	data  hash: 0;
-	stack hash: 2AF2BCC;
+	stack hash: 1CB2BCC;
 
 	size:     0;
 	capacity: 8;
 
-	data[00E50E28]
+	data[00990E28]
 	{
 		 left  canary for data: DEDBAD1;
 		 [000] = -1;
