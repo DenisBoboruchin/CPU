@@ -1,6 +1,6 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, args, ...)                       \
+#define DEF_CMD(name, num, ...)                             \
     case num:                                               \
     {                                                       \
         (*index)++;                                         \
@@ -31,8 +31,8 @@
         break;                                              \
     }
 
-static const char* DISASMCMD = "disasmCmd.txt";
-static const char* BINCODE = "binCode.bin";
+const char* DISASMCMD = "disasmCmd.txt";
+const char* BINCODE = "binCode.bin";
 
 char* DisAssembler(void)
 {

@@ -1,96 +1,101 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="disassembler.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="MyStack.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2260" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="MyStack.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1556" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="0" />
-			<Collapse line="17" />
-			<Collapse line="35" />
-		</Folding>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="commands.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="113" topLine="0" />
+			<Cursor1 position="379" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="processor.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="assembler.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="240" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="SortText.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1106" topLine="18" />
-		</Cursor>
-		<Folding>
-			<Collapse line="7" />
-			<Collapse line="40" />
-			<Collapse line="49" />
-			<Collapse line="63" />
-			<Collapse line="72" />
-			<Collapse line="85" />
-			<Collapse line="87" />
-			<Collapse line="103" />
-			<Collapse line="110" />
-			<Collapse line="118" />
-			<Collapse line="122" />
-			<Collapse line="133" />
-			<Collapse line="146" />
-			<Collapse line="158" />
-			<Collapse line="168" />
-			<Collapse line="181" />
-			<Collapse line="193" />
-			<Collapse line="203" />
-			<Collapse line="213" />
-			<Collapse line="225" />
-			<Collapse line="234" />
-			<Collapse line="242" />
-			<Collapse line="258" />
-			<Collapse line="273" />
-			<Collapse line="283" />
-			<Collapse line="291" />
-			<Collapse line="300" />
-			<Collapse line="311" />
-			<Collapse line="313" />
-			<Collapse line="322" />
-		</Folding>
-	</File>
-	<File name="assembler.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3004" topLine="87" />
-		</Cursor>
-	</File>
-	<File name="assembler.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="253" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="commands.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="317" topLine="0" />
+			<Cursor1 position="83" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="enum.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="63" topLine="0" />
 		</Cursor>
+		<Folding>
+			<Collapse line="0" />
+			<Collapse line="7" />
+		</Folding>
 	</File>
-	<File name="processor.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="SortText.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2111" topLine="62" />
+			<Cursor1 position="1106" topLine="18" />
 		</Cursor>
+	</File>
+	<File name="processor.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="531" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MyStack.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2260" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="20" />
+			<Collapse line="36" />
+			<Collapse line="54" />
+			<Collapse line="75" />
+			<Collapse line="86" />
+			<Collapse line="103" />
+			<Collapse line="120" />
+			<Collapse line="126" />
+			<Collapse line="135" />
+			<Collapse line="141" />
+			<Collapse line="145" />
+			<Collapse line="156" />
+			<Collapse line="166" />
+			<Collapse line="204" />
+			<Collapse line="206" />
+			<Collapse line="252" />
+			<Collapse line="273" />
+			<Collapse line="283" />
+			<Collapse line="288" />
+			<Collapse line="294" />
+			<Collapse line="308" />
+			<Collapse line="312" />
+		</Folding>
+	</File>
+	<File name="assembler.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="102" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="113" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+		</Folding>
+	</File>
+	<File name="processor.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="240" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="disassembler.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="69" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="37" />
+			<Collapse line="48" />
+			<Collapse line="50" />
+			<Collapse line="61" />
+			<Collapse line="68" />
+			<Collapse line="72" />
+			<Collapse line="83" />
+			<Collapse line="85" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

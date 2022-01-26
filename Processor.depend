@@ -4,7 +4,7 @@
 	"processor.h"
 	"assembler.h"
 
-1641464183 c:\programming\codeblocks\project\processor\processor\processor.h
+1643189351 c:\programming\codeblocks\project\processor\processor\processor.h
 	<stdio.h>
 	<assert.h>
 	<math.h>
@@ -12,7 +12,7 @@
 	"MyStack.h"
 	"SortText.h"
 
-1641823143 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
+1643189351 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
 	"processor.h"
 
 1635516569 c:\programming\codeblocks\project\processor\processor\sorttext.h
@@ -31,7 +31,7 @@
 	<assert.h>
 	<stdlib.h>
 
-1643027667 c:\programming\codeblocks\project\processor\processor\assembler.h
+1643191963 c:\programming\codeblocks\project\processor\processor\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -41,19 +41,19 @@
 1637915941 source:c:\programming\codeblocks\project\processor\processor\mystack.cpp
 	"MyStack.h"
 
-1641057265 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
+1643188135 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
 	"SortText.h"
 
-1643027711 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
+1643190871 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
 	"assembler.h"
 	"commands.h"
 
 1639308175 c:\programming\codeblocks\project\processor\processor\enum.h
 	"commands.h"
 
-1643026789 c:\programming\codeblocks\project\processor\processor\commands.h
+1643187210 c:\programming\codeblocks\project\processor\processor\commands.h
 
-1643015174 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
+1643189446 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
 	"assembler.h"
 	"commands.h"
 

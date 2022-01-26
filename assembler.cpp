@@ -1,19 +1,20 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, args, ...)                                       \
-    if (!stricmp((strings + j)->str, #name))                                \
-    {                                                                       \
-        *(codeMassive + size) = (char) num;                                 \
-        fprintf(code, "%04d |%5s| %d\n", j, #name, num);                    \
-                                                                            \
-        size += sizeof(char);                                               \
-                                                                            \
-        if (num & 0x10)                                                     \
-        {                                                                   \
-            j++;                                                            \
-            CheckType(code, (strings + j)->str, codeMassive, &size, num);   \
-        }                                                                   \
-        continue;                                                           \
+#define DEF_CMD(name, num, ...)                                                     \
+    if (!stricmp((strings + j)->str, #name))                                        \
+    {                                                                               \
+        *(codeMassive + *size) = (char) num;                                         \
+        fprintf(code, "%04d |%5s| %d\n", j, #name, num);                            \
+                                                                                    \
+        *size += sizeof(char);                                                       \
+                                                                                    \
+        if (num & 0x10)                                                             \
+        {                                                                           \
+            j++;                                                                    \
+            CheckType(code, (strings + j)->str, codeMassive, size, num);   \
+        }                                                                           \
+                                                                                    \
+        continue;                                                                   \
     }
 
 
@@ -21,35 +22,35 @@ static const char* CMD     = "cmd.txt";
 static const char* CODE    = "code.txt";
 static const char* BINCODE = "binCode.bin";
 
-/*
-struct token
-{
-    char* str;
-    int type;
-    int val;
-};
-struct token progt[30];
-for (int i = 0 ; progt[i].str = strtok (progt, "\n"); i++)
-{
-}
-for ()
-*/
-
 char* Assembler(void)
 {
     size_t sizeBuf = GetSizeBuf(CMD);
-
     char* buffer = CreateBuf(&sizeBuf, CMD);
 
     size_t numLines = NumberOfLines(buffer, sizeBuf);
-
     struct pointStr* strings = CrtorStrs(numLines, sizeBuf, buffer);
 
     FILE* code = fopen(CODE, "w");
+    char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
+    int sizeCode = 0;
 
-    char* codeMassive = (char*) calloc(numLines + 1, sizeof(double));
-    int size = 0;
+    Assembling(code, strings, codeMassive, &sizeCode, numLines);
 
+    codeMassive = (char*) realloc(codeMassive, (sizeCode + 1) * sizeof(char));
+
+    FILE* binCode = fopen(BINCODE, "wb");
+
+    assert(fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
+
+    assert (fclose(binCode) == 0);
+    assert (fclose(code)    == 0);
+
+    //free(codeMassive);
+    free(buffer);
+}
+
+int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
+{
     for (int j = 0; j < numLines; j++)
     {
         #include "commands.h"
@@ -57,18 +58,6 @@ char* Assembler(void)
         CheckCmd((strings + j)->str, j);
     }
     #undef DEF_CMD
-
-    codeMassive = (char*) realloc(codeMassive, (size + 1) * sizeof(char));
-
-    FILE* binCode = fopen(BINCODE, "wb");
-
-    assert(fwrite(codeMassive, sizeof(char), size + 1, binCode) == size + 1);
-
-    assert (fclose(binCode) == 0);
-    assert (fclose(code) == 0);
-
-    //free(codeMassive);
-    free(buffer);
 }
 
 size_t NumberOfLines(char* buffer, const size_t sizeBuf)
@@ -107,16 +96,17 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
     int value = 0;
     if (sscanf(str, "%d", &value))
     {
-        CheckCorrect(num);
+        int check = CheckCorrect(num);
+
         *((int*) (codeMassive + *size)) = value;
 
-        *size += sizeof(int);
         fprintf(code, " | %d\n", value);
+        *size += sizeof(int);
 
-        return 0;
+        return check;
     }
 
-    return CheckCmd(str, -17);
+    return CheckCmd(str, ERRORCMD);
 }
 
 int CheckCmd(char* str, int j)
@@ -126,6 +116,7 @@ int CheckCmd(char* str, int j)
     if ((strlen(str) > 0) && (j > 0))
     {
         printf("%s is unknown command!\t(line %3d)\n", str, j + 1);
+        fprintf(logAsm, "%s is unknown command!\t(line %3d)\n", str, j + 1);
 
         return 1;
     }
@@ -133,9 +124,12 @@ int CheckCmd(char* str, int j)
     if ((strlen(str) > 0) && (j == -17))
     {
         printf("%s is unknown argument\n", str);
+        fprintf(logAsm, "%s is unknown argument\n", str);
 
         return 1;
     }
+
+    return 0;
 }
 
 char CheckRegs(char* str)
@@ -158,7 +152,17 @@ char CheckRegs(char* str)
 int CheckCorrect(char num)
 {
     if (num & 0x08)
+    {
         printf("incorrect argument!\n");
 
-    return 1;
+        return 1;
+    }
+
+    return 0;
+}
+
+void Verificat(int ERROR)
+{
+    if (ERROR)
+        assert(!"ERROR");
 }

@@ -1,6 +1,6 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, args, ...)                       \
+#define DEF_CMD(name, num, ...)                             \
     case num:                                               \
     {                                                       \
         (*index)++;                                         \

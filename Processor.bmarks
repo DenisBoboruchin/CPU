@@ -1,46 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <BrowseTracker_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="commands.h" open="1" top="0" tabpos="11">
-		<Cursor position="344" topLine="0" />
-		<BrowseMarks positions="0,55,88,121,154,253,387,420,319,317" />
-		<Book_Marks positions="" />
-	</File>
 	<File name="disassembler.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="2490" topLine="4" />
-		<BrowseMarks positions="152,215,467,530,854,917,980,1169,1999,2133,2181,2499,2510,2575,2673,2878,22" />
+		<Cursor position="22" topLine="0" />
+		<BrowseMarks positions="0,152,215,467,530,854,917,980,1169,1923,1999,2133,2181,2499,2510,2575,2673,2878,63" />
 		<Book_Marks positions="" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="113" topLine="0" />
-		<BrowseMarks positions="91,148,151" />
-		<Book_Marks positions="" />
-	</File>
-	<File name="assembler.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="764" topLine="0" />
-		<BrowseMarks positions="2942,3224,3233,3373,3479,3004" />
-		<Book_Marks positions="153,1362" />
-	</File>
-	<File name="processor.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="919" topLine="0" />
-		<BrowseMarks positions="638,669,776,812,885,2079,2425,2588,2626,2705,2783,2794,2868" />
-		<Book_Marks positions="" />
+	<File name="MyStack.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="2260" topLine="0" />
+		<BrowseMarks positions="1675,1911,1913,2019" />
 	</File>
 	<File name="MyStack.h" open="1" top="0" tabpos="9">
 		<Cursor position="1556" topLine="0" />
 	</File>
-	<File name="SortText.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="1106" topLine="18" />
-		<BrowseMarks positions="742,924,1026,1028,1102,1121,1141,1446,1782,2046" />
-	</File>
-	<File name="assembler.h" open="1" top="0" tabpos="6">
-		<Cursor position="361" topLine="0" />
-		<BrowseMarks positions="40,104,127,250,283,372,469" />
-		<Book_Marks positions="" />
-	</File>
-	<File name="enum.h" open="1" top="0" tabpos="10">
-		<Cursor position="90" topLine="0" />
-		<BrowseMarks positions="14,94" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="113" topLine="0" />
+		<BrowseMarks positions="91,148,151" />
 		<Book_Marks positions="" />
 	</File>
 	<File name="processor.h" open="1" top="0" tabpos="3">
@@ -48,8 +23,32 @@
 		<BrowseMarks positions="0,102,166,183,204,232,280,300,329" />
 		<Book_Marks positions="329,329" />
 	</File>
-	<File name="MyStack.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="2260" topLine="0" />
-		<BrowseMarks positions="1675,1911,1913,2019" />
+	<File name="SortText.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="1106" topLine="18" />
+		<BrowseMarks positions="742,924,1026,1028,1102,1121,1141,1446,1782,2046" />
+	</File>
+	<File name="assembler.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="3004" topLine="87" />
+		<BrowseMarks positions="2127,2907,2907,2907,2907,3235,3235,3341,3341,3783,3783,3783,3783,24,77" />
+		<Book_Marks positions="153,1362" />
+	</File>
+	<File name="assembler.h" open="1" top="0" tabpos="6">
+		<Cursor position="253" topLine="0" />
+		<BrowseMarks positions="40,104,127,175,177,279,312,371,430,527,592" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="commands.h" open="1" top="1" tabpos="11">
+		<Cursor position="317" topLine="0" />
+		<BrowseMarks positions="0,20,55,416,482,515,581,649,682,750,760" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="enum.h" open="1" top="0" tabpos="10">
+		<Cursor position="63" topLine="0" />
+		<BrowseMarks positions="14,94" />
+	</File>
+	<File name="processor.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2111" topLine="62" />
+		<BrowseMarks positions="638,669,776,812,885,2079,2425,2588,2626,2705,2783,2794,2868" />
+		<Book_Marks positions="" />
 	</File>
 </BrowseTracker_layout_file>
