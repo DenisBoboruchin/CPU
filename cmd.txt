@@ -9,9 +9,11 @@ rax
 out
 push 6
 push 24
+
 mul
 sqrt
 out
+
 hlt
 in
 in

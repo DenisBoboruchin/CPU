@@ -19,6 +19,8 @@ int CheckCmd(char* str, int j);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
 char CheckRegs(char* str);
 int CheckCorrect(char num);
+int CheckHLT(char* str);
+void LogHLT(int HLTFLG);
 void Verificat(int ERROR);
 
 char* DisAssembler(void);

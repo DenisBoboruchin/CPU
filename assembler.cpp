@@ -3,15 +3,15 @@
 #define DEF_CMD(name, num, ...)                                                     \
     if (!stricmp((strings + j)->str, #name))                                        \
     {                                                                               \
-        *(codeMassive + *size) = (char) num;                                         \
+        *(codeMassive + *size) = (char) num;                                        \
         fprintf(code, "%04d |%5s| %d\n", j, #name, num);                            \
                                                                                     \
-        *size += sizeof(char);                                                       \
+        *size += sizeof(char);                                                      \
                                                                                     \
         if (num & 0x10)                                                             \
         {                                                                           \
             j++;                                                                    \
-            CheckType(code, (strings + j)->str, codeMassive, size, num);   \
+            ERROR |= CheckType(code, (strings + j)->str, codeMassive, size, num);   \
         }                                                                           \
                                                                                     \
         continue;                                                                   \
@@ -34,7 +34,7 @@ char* Assembler(void)
     char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
     int sizeCode = 0;
 
-    Assembling(code, strings, codeMassive, &sizeCode, numLines);
+    int ERRORFLAG = Assembling(code, strings, codeMassive, &sizeCode, numLines);
 
     codeMassive = (char*) realloc(codeMassive, (sizeCode + 1) * sizeof(char));
 
@@ -47,17 +47,28 @@ char* Assembler(void)
 
     //free(codeMassive);
     free(buffer);
+
+    Verificat(ERRORFLAG);
 }
 
 int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
 {
+    int ERROR  = 0;
+    int HLTFLG = 0;
+
     for (int j = 0; j < numLines; j++)
     {
+        HLTFLG |= CheckHLT((strings + j)->str);
+
         #include "commands.h"
 
-        CheckCmd((strings + j)->str, j);
+        ERROR |= CheckCmd((strings + j)->str, j);
     }
     #undef DEF_CMD
+
+    LogHLT(HLTFLG);
+
+    return ERROR || (!HLTFLG);
 }
 
 size_t NumberOfLines(char* buffer, const size_t sizeBuf)
@@ -159,6 +170,23 @@ int CheckCorrect(char num)
     }
 
     return 0;
+}
+
+int CheckHLT(char* str)
+{
+    if (!stricmp(str, "HLT"))
+        return 1;
+    else
+        return 0;
+}
+
+void LogHLT(int HLTFLG)
+{
+    if (!HLTFLG)
+    {
+        printf("Expected \"HLT\"\n");
+        fprintf(logAsm, "Expected \"HLT\"\n");
+    }
 }
 
 void Verificat(int ERROR)

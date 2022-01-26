@@ -37,15 +37,14 @@ static const char* BINCODE = "binCode.bin";
 char* DisAssembler(void)
 {
     size_t sizeBuf = GetSizeBuf(BINCODE);
-
-    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);      /////////////////////////
+    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
 
     FILE* disasmCmd = fopen(DISASMCMD, "w");
 
     int ip = 0;
     int index = 0;
-                                                                            //size_t numCmd = sizeBuf / sizeof(int);
-    while (true)                                                        //for (int ip = 0; ip < numCmd; ip++)
+
+    while (true)
     {
         if (*(code + ip) == (char) CMD_HLT)
         {
@@ -58,14 +57,14 @@ char* DisAssembler(void)
     }
 }
 
-void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)            //////////
+void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)
 {
     assert (disasmCmd != NULL);
     assert (code != NULL);
     assert (ip != NULL);
     assert (*ip >= 0);
 
-    switch ((int) *(code + *ip))                                 ///////
+    switch ((int) *(code + *ip))
     {
         #include "commands.h"
 
