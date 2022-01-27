@@ -10,14 +10,21 @@
 
 static FILE* logAsm = fopen("logAsm.txt", "w");
 
-const int ERRORCMD = -17;
-const int MISTAKE = 1;
-const int NOMISTAKE = 0;
+const int ERRORCMD  = -17;
+const int MISTAKE   =   1;
+const int NOMISTAKE =   0;
+
 const char RAX  = 1;
 const char RBX  = 2;
 const char RCX  = 3;
 const char RDX  = 4;
 const char NREG = 0;
+
+struct labels
+{
+    int ip = 0;
+
+};
 
 char* Assembler(const char* CMD);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);

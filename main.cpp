@@ -11,5 +11,5 @@ int main(void)
     Assembler(CMD);
     DisAssembler(BINCODE);
 
-    Execute();
+    Execute(BINCODE);
 }

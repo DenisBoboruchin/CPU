@@ -5,21 +5,11 @@
         __VA_ARGS__                      \
                                          \
 
-
-static const char* BINCODE = "binCode.bin";
-
-int Execute(void)
+int Execute(const char* BINCODE)
 {
     CPU cpu = {};
 
-    StackCtor(&(cpu.stk));
-
-    size_t sizeBuf = GetSizeBuf(BINCODE);
-
-    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
-
-    cpu.code = code;
-    cpu.ip = 0;
+    ProcCtor(&cpu, BINCODE);
 
     while (true)
     {
@@ -29,12 +19,27 @@ int Execute(void)
         CheckCmd(&cpu);
     }
 
+    ProcDtor(&cpu);
+}
 
-    StackDtor(&cpu.stk);
+int ProcCtor(CPU* pcpu, const char* BINCODE)
+{
+    StackCtor(&(pcpu->stk));
+
+    size_t sizeBuf = GetSizeBuf(BINCODE);
+
+    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
+
+    pcpu->code = code;
+    pcpu->ip = 0;
+
+    ProcAssert(pcpu);
 }
 
 void CheckCmd(CPU* pcpu)
 {
+    ProcAssert(pcpu);
+
     switch ((int) *(pcpu->code + pcpu->ip))
     {
         #include "commands.h"
@@ -48,4 +53,53 @@ void CheckCmd(CPU* pcpu)
     }
 
     #undef DEF_CMD
+}
+
+int ProcAssert(CPU* pcpu)
+{
+    assert (pcpu != NULL);
+    assert (pcpu->code != NULL);
+    assert (pcpu->ip >= 0);
+}
+
+int ProcDtor(CPU* pcpu)
+{
+    ProcAssert(pcpu);
+
+    StackDtor(&pcpu->stk);
+    free(pcpu->code);
+    DestReg(pcpu);
+    pcpu->ip = DESTROYED;
+}
+
+int DestReg(CPU* pcpu)
+{
+    int index = NUMREGS;
+
+    while (index > 0)
+    {
+        pcpu->registers[index] = DESTROYED;
+        index--;
+    }
+}
+
+int GetValue(int* value)
+{
+    if ((scanf("%d", value) != 1) || (getchar() != '\n'))
+    {
+        printf("Error argument!\n");
+        printf("Enter the argument again\n");
+
+        ClearInputBuf();
+
+        return ERRORINPUT;
+    }
+    else
+        return GOODINPUT;
+}
+
+void ClearInputBuf(void)
+{
+    while (getchar() != ('\n'))
+        continue;
 }

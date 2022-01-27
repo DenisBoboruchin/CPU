@@ -85,19 +85,19 @@ void NumToReg(FILE* disasmCmd, int num)
 {
     switch (num)
     {
-        case 1:
+        case RAX:
             fprintf(disasmCmd, " rax");
             break;
 
-        case 2:
+        case RBX:
             fprintf(disasmCmd, " rbx");
             break;
 
-        case 3:
+        case RCX:
             fprintf(disasmCmd, " rcx");
             break;
 
-        case 4:
+        case RDX:
             fprintf(disasmCmd, " rdx");
             break;
 

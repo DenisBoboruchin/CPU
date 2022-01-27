@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <BrowseTracker_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="MyStack.h" open="1" top="0" tabpos="9">
-		<Cursor position="1556" topLine="0" />
-		<BrowseMarks positions="798,849,851" />
+	<File name="enum.h" open="1" top="0" tabpos="10">
+		<Cursor position="63" topLine="0" />
+		<BrowseMarks positions="14,30,98" />
 		<Book_Marks positions="" />
 	</File>
 	<File name="commands.h" open="1" top="0" tabpos="11">
-		<Cursor position="379" topLine="0" />
-		<BrowseMarks positions="0,20,55,416,515,682,750,760" />
-		<Book_Marks positions="" />
-	</File>
-	<File name="assembler.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="83" topLine="0" />
-		<BrowseMarks positions="2771,2907,4362,4632,4665,4696,4725,4749,4841,4827,2241,2262,2289,2479,2537,2650,2671,2705,2708" />
-		<Book_Marks positions="153,1362" />
-	</File>
-	<File name="enum.h" open="1" top="0" tabpos="10">
-		<Cursor position="63" topLine="0" />
-		<BrowseMarks positions="14,94" />
-		<Book_Marks positions="" />
-	</File>
-	<File name="SortText.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="1106" topLine="18" />
-		<BrowseMarks positions="742,924,1026,1028,1102,1121,1141,1446,1782,2046,7972,8225" />
-		<Book_Marks positions="" />
-	</File>
-	<File name="processor.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="531" topLine="0" />
-		<BrowseMarks positions="0,71,638,669,776,812,885,2079,2425,2588,2626,2705,2783,2794,2868" />
-		<Book_Marks positions="" />
+		<Cursor position="603" topLine="0" />
+		<BrowseMarks positions="350,480,496,534,645,662,674,680,825,1005,1011,1135,1292,1298,1641,1647,1814,1959,1977,2173" />
+		<Book_Marks positions="614,577" />
 	</File>
 	<File name="MyStack.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="2260" topLine="0" />
+		<Cursor position="2260" topLine="123" />
 		<BrowseMarks positions="1675,1911,1913,2019" />
-		<Book_Marks positions="" />
 	</File>
 	<File name="assembler.h" open="1" top="0" tabpos="6">
-		<Cursor position="102" topLine="0" />
-		<BrowseMarks positions="40,104,127,199,226,462,521,757,822,576" />
+		<Cursor position="576" topLine="0" />
+		<BrowseMarks positions="" />
 		<Book_Marks positions="" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="113" topLine="0" />
-		<BrowseMarks positions="91,148,151" />
+	<File name="assembler.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2566" topLine="42" />
+		<BrowseMarks positions="" />
+		<Book_Marks positions="153,1362" />
+	</File>
+	<File name="processor.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="404" topLine="0" />
+		<BrowseMarks positions="0,70,114,204,251,427,468,488,548,635,666,711,749,769,780" />
 		<Book_Marks positions="" />
 	</File>
 	<File name="processor.h" open="1" top="0" tabpos="3">
-		<Cursor position="240" topLine="0" />
-		<BrowseMarks positions="0,102,183,204,232,280,300,329" />
+		<Cursor position="164" topLine="0" />
+		<BrowseMarks positions="177,194,215,265,291,338,340,361" />
 		<Book_Marks positions="329,329" />
 	</File>
-	<File name="disassembler.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="69" topLine="0" />
-		<BrowseMarks positions="2770,26,152,215,467,530,854,917,980,1169,1865,1968,2133,2154,2467,2467,2575,2565" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="113" topLine="0" />
+		<BrowseMarks positions="0,72,146,186,220,220,232,235,72" />
 		<Book_Marks positions="" />
+	</File>
+	<File name="disassembler.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="2648" topLine="0" />
+		<BrowseMarks positions="1923,2443" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="MyStack.h" open="1" top="0" tabpos="9">
+		<Cursor position="847" topLine="33" />
+		<BrowseMarks positions="798,849,851" />
+	</File>
+	<File name="SortText.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="7972" topLine="279" />
+		<BrowseMarks positions="742,924,1026,1028,1102,1121,1141,1446,1782,2046,7972,8225" />
 	</File>
 </BrowseTracker_layout_file>

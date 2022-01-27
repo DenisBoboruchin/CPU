@@ -51,7 +51,9 @@ DEF_CMD(IN   , 0b00000110,   0,
 {
     int value = 0;
 
-    scanf("%d", &value);
+    while (GetValue(&value) != GOODINPUT)
+        continue;
+
     StackPush(&pcpu->stk,  value);
 
     pcpu->ip++;
