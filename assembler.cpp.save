@@ -4,7 +4,7 @@
     if (!stricmp((strings + j)->str, #name))                                        \
     {                                                                               \
         *(codeMassive + *size) = (char) num;                                        \
-        fprintf(code, "%04d |%5s| %d\n", j, #name, num);                            \
+        fprintf(code, "%-4d%-6s", *index, #name);                            \
                                                                                     \
         *size += sizeof(char);                                                      \
                                                                                     \
@@ -17,12 +17,10 @@
         continue;                                                                   \
     }
 
-
-static const char* CMD     = "cmd.txt";
 static const char* CODE    = "code.txt";
 static const char* BINCODE = "binCode.bin";
 
-char* Assembler(void)
+char* Assembler(const char* CMD)
 {
     size_t sizeBuf = GetSizeBuf(CMD);
     char* buffer = CreateBuf(&sizeBuf, CMD);
@@ -49,6 +47,8 @@ char* Assembler(void)
     free(buffer);
 
     Verificat(ERRORFLAG);
+
+    return codeMassive;
 }
 
 size_t NumberOfLines(char* buffer, const size_t sizeBuf)
@@ -72,6 +72,13 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
 
 int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
 {
+    assert (code != NULL);
+    assert (strings != NULL);
+    assert (codeMassive != NULL);
+    assert (size != NULL);
+    assert (*size >= 0);
+    assert (numLines >= 0);
+
     int ERROR  = NOMISTAKE;
     int HLTFLG = 0;
 
@@ -92,6 +99,12 @@ int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* siz
 
 int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
 {
+    assert (code != NULL);
+    assert (str != NULL);
+    assert (codeMassive != NULL);
+    assert (size != NULL);
+    assert (*size >= 0);
+
     if (char result = CheckRegs(str))
     {
         *(codeMassive + *size - 1) = (char) num | (1 << 5);
@@ -145,6 +158,8 @@ int CheckCmd(char* str, int j)
 
 char CheckRegs(char* str)
 {
+    assert (str != NULL);
+
     if (!stricmp(str, "rax"))
         return RAX;
 
@@ -174,6 +189,8 @@ int CheckCorrect(char num)
 
 int CheckHLT(char* str)
 {
+    assert (str != NULL);
+
     if (!stricmp(str, "HLT"))
         return 1;
     else

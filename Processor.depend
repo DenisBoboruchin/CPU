@@ -12,7 +12,7 @@
 	"MyStack.h"
 	"SortText.h"
 
-1643296088 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
+1643296162 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
 	"processor.h"
 	"commands.h"
 
@@ -32,7 +32,7 @@
 	<assert.h>
 	<stdlib.h>
 
-1643295191 c:\programming\codeblocks\project\processor\processor\assembler.h
+1643296868 c:\programming\codeblocks\project\processor\processor\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -52,7 +52,7 @@
 1643276260 c:\programming\codeblocks\project\processor\processor\enum.h
 	"commands.h"
 
-1643296141 c:\programming\codeblocks\project\processor\processor\commands.h
+1643296401 c:\programming\codeblocks\project\processor\processor\commands.h
 
 1643295309 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
 	"assembler.h"

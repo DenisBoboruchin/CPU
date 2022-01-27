@@ -33,6 +33,10 @@ DEF_CMD(MUL  , 0b00000011,   0,
 DEF_CMD(DIV  , 0b00000100,   0,
 {
     int denominator =  StackPop(&pcpu->stk);
+
+    if (denominator == 0)
+        assert (!"DIVISION ERROR\n");
+
     StackPush(&pcpu->stk,  StackPop(&pcpu->stk) / denominator);
 
     pcpu->ip++;

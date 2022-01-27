@@ -4,22 +4,17 @@
     if (!stricmp((strings + j)->str, #name))                                        \
     {                                                                               \
         *(codeMassive + *size) = (char) num;                                        \
-        fprintf(code, "%04d |%5s| %d\n", j, #name, num);                            \
-                                                                                    \
         *size += sizeof(char);                                                      \
                                                                                     \
         if (num & 0x10)                                                             \
         {                                                                           \
             j++;                                                                    \
-            ERROR |= CheckType(code, (strings + j)->str, codeMassive, size, num);   \
+            ERROR |= CheckType((strings + j)->str, codeMassive, size, num);         \
         }                                                                           \
                                                                                     \
         continue;                                                                   \
     }
 
-
-//static const char* CMD     = "cmd.txt";
-static const char* CODE    = "code.txt";
 static const char* BINCODE = "binCode.bin";
 
 char* Assembler(const char* CMD)
@@ -30,11 +25,10 @@ char* Assembler(const char* CMD)
     size_t numLines = NumberOfLines(buffer, sizeBuf);
     struct pointStr* strings = CrtorStrs(numLines, sizeBuf, buffer);
 
-    FILE* code = fopen(CODE, "w");
     char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
     int sizeCode = 0;
 
-    int ERRORFLAG = Assembling(code, strings, codeMassive, &sizeCode, numLines);
+    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines);
 
     codeMassive = (char*) realloc(codeMassive, (sizeCode + 1) * sizeof(char));
 
@@ -43,7 +37,6 @@ char* Assembler(const char* CMD)
     assert(fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
 
     assert (fclose(binCode) == 0);
-    assert (fclose(code)    == 0);
 
     //free(codeMassive);
     free(buffer);
@@ -72,9 +65,8 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     return numLines;
 }
 
-int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines)
 {
-    assert (code != NULL);
     assert (strings != NULL);
     assert (codeMassive != NULL);
     assert (size != NULL);
@@ -99,9 +91,8 @@ int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* siz
     return ERROR || (!HLTFLG);
 }
 
-int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
+int CheckType(char* str, char* codeMassive, int* size, int num)
 {
-    assert (code != NULL);
     assert (str != NULL);
     assert (codeMassive != NULL);
     assert (size != NULL);
@@ -114,8 +105,6 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
 
         *size += sizeof(char);
 
-        fprintf(code, " | %c\n", result);
-
         return NOMISTAKE;
     }
 
@@ -126,7 +115,6 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
 
         *((int*) (codeMassive + *size)) = value;
 
-        fprintf(code, " | %d\n", value);
         *size += sizeof(int);
 
         return check;

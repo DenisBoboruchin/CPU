@@ -28,8 +28,8 @@ struct labels
 
 char* Assembler(const char* CMD);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
-int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines);
-int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num);
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines);
+int CheckType(char* str, char* codeMassive, int* size, int num);
 int CheckCmd(char* str, int j);
 char CheckRegs(char* str);
 
