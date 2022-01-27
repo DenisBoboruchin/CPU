@@ -1,5 +1,11 @@
 #include "processor.h"
 
+#define DEF_CMD(name, num, arg, ...)     \
+    case CMD_##name:                     \
+        __VA_ARGS__                      \
+                                        \
+
+
 static const char* BINCODE = "binCode.bin";
 
 int Execute(void)
@@ -12,9 +18,9 @@ int Execute(void)
 
     char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
 
-    cpu.code = code;                                                        //size_t numCmd = sizeBuf / sizeof();
+    cpu.code = code;
     cpu.ip = 0;
-                                                                            //for (cpu.ip = 0; cpu.ip < numCmd; pcpu->ip++)
+
     while (true)
     {
         if (*(cpu.code + cpu.ip) == (char) CMD_HLT)
@@ -22,6 +28,7 @@ int Execute(void)
 
         CheckCmd(&cpu);
     }
+    #undef DEF_CMD
 
     StackDtor(&cpu.stk);
 }
@@ -30,12 +37,14 @@ void CheckCmd(CPU* pcpu)
 {
     switch ((int) *(pcpu->code + pcpu->ip))
     {
+        #include "commands.h"
+    /*
         case CMD_PUSH:
         {
             pcpu->ip++;
             StackPush(&pcpu->stk, *((int*) (pcpu->code + pcpu->ip)));
 
-            pcpu->ip++;
+            pcpu->ip += sizeof(int);
             break;
         }
 
@@ -127,7 +136,7 @@ void CheckCmd(CPU* pcpu)
             pcpu->ip++;
             break;
         }
-
+          */
         default:
         {
             assert(!"unknown command");

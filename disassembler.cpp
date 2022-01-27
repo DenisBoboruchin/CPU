@@ -55,6 +55,8 @@ char* DisAssembler(void)
 
         Disasembling(disasmCmd, code, &ip, &index);
     }
+
+    assert(fclose(disasmCmd) == 0);
 }
 
 void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)

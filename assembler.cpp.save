@@ -65,9 +65,9 @@ int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* siz
         ERROR |= CheckCmd((strings + j)->str, j);
     }
     #undef DEF_CMD
-    
+
     LogHLT(HLTFLG);
-    
+
     return ERROR || (!HLTFLG);
 }
 
@@ -181,9 +181,27 @@ int CheckHLT(char* str)
 }
 
 void LogHLT(int HLTFLG)
+{
+    if (!HLTFLG)
+    {
+        printf("Expected \"HLT\"\n");
+        fprintf(logAsm, "Expected \"HLT\"\n");
+    }
+}
 
 void Verificat(int ERROR)
 {
     if (ERROR)
+    {
+        printf("ERROR ASSEMBLING\n");
+        fprintf(logAsm, "ERROR ASSEMBLING\n");
+
         assert(!"ERROR");
+    }
+
+    else
+    {
+        printf("SUCCESS ASSEMBLING\n");
+        fprintf(logAsm, "SUCCESS ASSEMBLING\n");
+    }
 }

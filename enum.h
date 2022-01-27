@@ -1,7 +1,7 @@
 #ifndef ENUM
 #define ENUM
 
-#define DEF_CMD(name, num, ...) \
+#define DEF_CMD(name, num, ...)     \
         CMD_##name = num,
 
 enum cmd

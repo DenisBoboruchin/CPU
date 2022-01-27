@@ -192,5 +192,16 @@ void LogHLT(int HLTFLG)
 void Verificat(int ERROR)
 {
     if (ERROR)
+    {
+        printf("ERROR ASSEMBLING\n");
+        fprintf(logAsm, "ERROR ASSEMBLING\n");
+
         assert(!"ERROR");
+    }
+
+    else
+    {
+        printf("SUCCESS ASSEMBLING\n");
+        fprintf(logAsm, "SUCCESS ASSEMBLING\n");
+    }
 }
