@@ -18,11 +18,11 @@
     }
 
 
-static const char* CMD     = "cmd.txt";
+//static const char* CMD     = "cmd.txt";
 static const char* CODE    = "code.txt";
 static const char* BINCODE = "binCode.bin";
 
-char* Assembler(void)
+char* Assembler(const char* CMD)
 {
     size_t sizeBuf = GetSizeBuf(CMD);
     char* buffer = CreateBuf(&sizeBuf, CMD);
@@ -49,26 +49,8 @@ char* Assembler(void)
     free(buffer);
 
     Verificat(ERRORFLAG);
-}
 
-int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
-{
-    int ERROR  = 0;
-    int HLTFLG = 0;
-
-    for (int j = 0; j < numLines; j++)
-    {
-        HLTFLG |= CheckHLT((strings + j)->str);
-
-        #include "commands.h"
-
-        ERROR |= CheckCmd((strings + j)->str, j);
-    }
-    #undef DEF_CMD
-
-    LogHLT(HLTFLG);
-
-    return ERROR || (!HLTFLG);
+    return codeMassive;
 }
 
 size_t NumberOfLines(char* buffer, const size_t sizeBuf)
@@ -90,8 +72,41 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     return numLines;
 }
 
+int Assembling(FILE* code, struct pointStr* strings, char* codeMassive, int* size, int numLines)
+{
+    assert (code != NULL);
+    assert (strings != NULL);
+    assert (codeMassive != NULL);
+    assert (size != NULL);
+    assert (*size >= 0);
+    assert (numLines >= 0);
+
+    int ERROR  = NOMISTAKE;
+    int HLTFLG = 0;
+
+    for (int j = 0; j < numLines; j++)
+    {
+        HLTFLG |= CheckHLT((strings + j)->str);
+
+        #include "commands.h"
+
+        ERROR |= CheckCmd((strings + j)->str, j);
+    }
+    #undef DEF_CMD
+
+    LogHLT(HLTFLG);
+
+    return ERROR || (!HLTFLG);
+}
+
 int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
 {
+    assert (code != NULL);
+    assert (str != NULL);
+    assert (codeMassive != NULL);
+    assert (size != NULL);
+    assert (*size >= 0);
+
     if (char result = CheckRegs(str))
     {
         *(codeMassive + *size - 1) = (char) num | (1 << 5);
@@ -101,7 +116,7 @@ int CheckType(FILE* code, char* str, char* codeMassive, int* size, int num)
 
         fprintf(code, " | %c\n", result);
 
-        return 0;
+        return NOMISTAKE;
     }
 
     int value = 0;
@@ -129,35 +144,37 @@ int CheckCmd(char* str, int j)
         printf("%s is unknown command!\t(line %3d)\n", str, j + 1);
         fprintf(logAsm, "%s is unknown command!\t(line %3d)\n", str, j + 1);
 
-        return 1;
+        return MISTAKE;
     }
 
-    if ((strlen(str) > 0) && (j == -17))
+    if ((strlen(str) > 0) && (j == ERRORCMD))
     {
         printf("%s is unknown argument\n", str);
         fprintf(logAsm, "%s is unknown argument\n", str);
 
-        return 1;
+        return MISTAKE;
     }
 
-    return 0;
+    return NOMISTAKE;
 }
 
 char CheckRegs(char* str)
 {
+    assert (str != NULL);
+
     if (!stricmp(str, "rax"))
-        return 1;
+        return RAX;
 
     if (!stricmp(str, "rbx"))
-        return 2;
+        return RBX;
 
     if (!stricmp(str, "rcx"))
-        return 3;
+        return RCX;
 
     if (!stricmp(str, "rdx"))
-        return 4;
+        return RDX;
 
-    return 0;
+    return NREG;
 }
 
 int CheckCorrect(char num)
@@ -166,14 +183,16 @@ int CheckCorrect(char num)
     {
         printf("incorrect argument!\n");
 
-        return 1;
+        return MISTAKE;
     }
 
-    return 0;
+    return NOMISTAKE;
 }
 
 int CheckHLT(char* str)
 {
+    assert (str != NULL);
+
     if (!stricmp(str, "HLT"))
         return 1;
     else

@@ -7,7 +7,7 @@
 
 #include "enum.h"
 #include "MyStack.h"
-#include "SortText.h"
+#include "SortText.h"           
 
 struct CPU
 {

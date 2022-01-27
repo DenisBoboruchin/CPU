@@ -32,9 +32,9 @@
     }
 
 static const char* DISASMCMD = "disasmCmd.txt";
-static const char* BINCODE = "binCode.bin";
+//static const char* BINCODE = "binCode.bin";
 
-char* DisAssembler(void)
+int DisAssembler(const char* BINCODE)
 {
     size_t sizeBuf = GetSizeBuf(BINCODE);
     char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
