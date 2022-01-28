@@ -31,21 +31,19 @@
         break;                                              \
     }
 
-const char* DISASMCMD = "disasmCmd.txt";
-const char* BINCODE = "binCode.bin";
+static const char* DISASMCMD = "disasmCmd.txt";
 
-char* DisAssembler(void)
+int DisAssembler(const char* BINCODE)
 {
     size_t sizeBuf = GetSizeBuf(BINCODE);
-
-    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);      /////////////////////////
+    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
 
     FILE* disasmCmd = fopen(DISASMCMD, "w");
 
     int ip = 0;
     int index = 0;
-                                                                            //size_t numCmd = sizeBuf / sizeof(int);
-    while (true)                                                        //for (int ip = 0; ip < numCmd; ip++)
+
+    while (true)
     {
         if (*(code + ip) == (char) CMD_HLT)
         {
@@ -56,16 +54,18 @@ char* DisAssembler(void)
 
         Disasembling(disasmCmd, code, &ip, &index);
     }
+
+    assert(fclose(disasmCmd) == 0);
 }
 
-void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)            //////////
+void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index)
 {
     assert (disasmCmd != NULL);
     assert (code != NULL);
     assert (ip != NULL);
     assert (*ip >= 0);
 
-    switch ((int) *(code + *ip))                                 ///////
+    switch ((int) *(code + *ip))
     {
         #include "commands.h"
 
@@ -84,19 +84,19 @@ void NumToReg(FILE* disasmCmd, int num)
 {
     switch (num)
     {
-        case 1:
+        case RAX:
             fprintf(disasmCmd, " rax");
             break;
 
-        case 2:
+        case RBX:
             fprintf(disasmCmd, " rbx");
             break;
 
-        case 3:
+        case RCX:
             fprintf(disasmCmd, " rcx");
             break;
 
-        case 4:
+        case RDX:
             fprintf(disasmCmd, " rdx");
             break;
 

@@ -79,9 +79,10 @@ struct pointStr* CrtorStrs(const size_t numLines, const size_t sizeBuf, char* bu
     assert (strings != NULL);
 
     strings->str = buffer;
-    //*(strings->str) = toupper (*buffer);
+    *(strings->str) = toupper (*buffer);
 
-    size_t index = 1;
+    size_t index  = 1;
+    size_t index2 = 1;
     for (size_t i = 0; i < sizeBuf; i++)
     {
         if (*(buffer + i) == '\0')
@@ -89,7 +90,7 @@ struct pointStr* CrtorStrs(const size_t numLines, const size_t sizeBuf, char* bu
             (strings + index)->str = buffer + i + 1;
             (strings + index - 1)->strEnd = buffer + i - 1;
 
-            //*((strings + index)->str) = toupper (*(buffer + i + 1));
+            *((strings + index)->str) = toupper (*(buffer + i + 1));
 
             index++;
         }

@@ -1,15 +1,24 @@
 push
 5
 in
+kkfk
 push
 rax
 out
+
+www
+w33
+54w
+
 pop
 rax
+
 out
+
 push 24
 push 24
 mul
+
 sqrt
 out
 hlt

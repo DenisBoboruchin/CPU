@@ -20,18 +20,23 @@ const char RCX  = 3;
 const char RDX  = 4;
 const char NREG = 0;
 
-struct labels
+const int NUMLBL    = 100;
+const int MAX_MRKSZ =  15;
+
+struct Label
 {
     int ip = 0;
-
+    char mark[MAX_MRKSZ] = {};
+    int condition = 0;
 };
 
 char* Assembler(const char* CMD);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
-int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines);
-int CheckType(char* str, char* codeMassive, int* size, int num);
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP);
+int CheckTypeARG(char* str, char* codeMassive, int* size, char num);
 int CheckCmd(char* str, int j);
 char CheckRegs(char* str);
+int SkipTabs(struct pointStr* strings, int* index);
 
 int CheckCorrect(char num);
 int CheckHLT(char* str);
@@ -41,5 +46,9 @@ void Verificat(int ERROR);
 int DisAssembler(const char* BINCODE);
 void Disasembling(FILE* disasmCmd, char* code, int* ip, int* index);
 void NumToReg(FILE* disasmCmd, int num);
+
+int AddToLabel(char* str, int* size, struct Label** labels, int* nJMP);
+int CheckNotNum(char* str);
+int OutPutLabel(struct Label* labels, int nJMP);
 
 #endif // ASSEMBLER

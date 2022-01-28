@@ -1,15 +1,25 @@
 #include "assembler.h"
 
 #define DEF_CMD(name, num, ...)                                                     \
-    if (!stricmp((strings + j)->str, #name))                                        \
+    if (!stricmp((strings + index)->str, #name))                                        \
     {                                                                               \
         *(codeMassive + *size) = (char) num;                                        \
         *size += sizeof(char);                                                      \
+                                                                                     \
+        if ((num & 0x40) && (num & 0x80))                                            \
+        {                                                                            \
+            index++;                                                                 \
+            SkipTabs(strings, &index);                                              \
                                                                                     \
+            break;                                                                   \
+        }                                                                            \
+                                                                                     \
         if (num & 0x10)                                                             \
         {                                                                           \
-            j++;                                                                    \
-            ERROR |= CheckType((strings + j)->str, codeMassive, size, num);         \
+            index++;                                                                   \
+            SkipTabs(strings, &index);                                                   \
+                                                                                           \
+            ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);         \
         }                                                                           \
                                                                                     \
         continue;                                                                   \
@@ -26,9 +36,13 @@ char* Assembler(const char* CMD)
     struct pointStr* strings = CrtorStrs(numLines, sizeBuf, buffer);
 
     char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
+    struct Label* labels = (struct Label*) calloc(NUMLBL, sizeof(struct Label));
     int sizeCode = 0;
+    int nJMP = 0;
 
-    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines);
+    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP);
+
+    OutPutLabel(labels, nJMP);
 
     codeMassive = (char*) realloc(codeMassive, (sizeCode + 1) * sizeof(char));
 
@@ -40,6 +54,8 @@ char* Assembler(const char* CMD)
 
     //free(codeMassive);
     free(buffer);
+    free(strings);
+    free(labels);
 
     Verificat(ERRORFLAG);
 
@@ -65,7 +81,7 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     return numLines;
 }
 
-int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines)
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP)
 {
     assert (strings != NULL);
     assert (codeMassive != NULL);
@@ -76,13 +92,16 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
     int ERROR  = NOMISTAKE;
     int HLTFLG = 0;
 
-    for (int j = 0; j < numLines; j++)
+    for (int index = 0; index < numLines; index++)
     {
-        HLTFLG |= CheckHLT((strings + j)->str);
+        if (strlen((strings + index)->str) == 0)
+            continue;
+
+        HLTFLG |= CheckHLT((strings + index)->str);
 
         #include "commands.h"
 
-        ERROR |= CheckCmd((strings + j)->str, j);
+        ERROR |= AddToLabel((strings + index)->str, size, labels, nJMP);
     }
     #undef DEF_CMD
 
@@ -91,7 +110,7 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
     return ERROR || (!HLTFLG);
 }
 
-int CheckType(char* str, char* codeMassive, int* size, int num)
+int CheckTypeARG(char* str, char* codeMassive, int* size, char num)
 {
     assert (str != NULL);
     assert (codeMassive != NULL);
@@ -109,18 +128,72 @@ int CheckType(char* str, char* codeMassive, int* size, int num)
     }
 
     int value = 0;
-    if (sscanf(str, "%d", &value))
+    char checkEnd = 0;
+    if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
     {
-        int check = CheckCorrect(num);
+        int check = CheckCorrect(num);                         //Äëÿ POP
 
         *((int*) (codeMassive + *size)) = value;
-
         *size += sizeof(int);
 
         return check;
     }
 
     return CheckCmd(str, ERRORCMD);
+}
+
+int SkipTabs(struct pointStr* strings, int* index)
+{
+    while (strlen((strings + *index)->str) == 0)
+        index++;
+}
+
+int AddToLabel(char* str, int* point, struct Label** labels, int* nJMP)
+{
+    assert (str != NULL);
+    assert (labels != NULL);
+    assert (*labels != NULL);
+    assert (point != NULL);
+    assert (*point >= 0);
+
+    if (!CheckNotNum(str))
+    {
+        (*labels)[*nJMP].ip = *point;
+        strcpy((*labels)[*nJMP].mark, str);
+
+        *nJMP = *nJMP + 1;
+        return NOMISTAKE;
+    }
+    else
+        return MISTAKE;
+}
+
+int CheckNotNum(char* str)
+{
+    int value = 0;
+    char checkEnd = 0;
+        if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
+        {
+            printf("%s is unknown command!\n", str);
+            fprintf(logAsm, "%s is unknown command!\n", str);
+
+            return MISTAKE;
+        }
+        else
+            return NOMISTAKE;
+}
+
+int OutPutLabel(struct Label* labels, int nJMP)
+{
+    assert (labels != NULL);
+    assert (nJMP >= 0);
+
+    for (int i = 0; i < nJMP; i++)
+    {
+        printf("ip:     %d\n", labels[i].ip);
+        printf("mark:   %s\n", labels[i].mark);
+        printf("status: %d\n", labels[i].condition);
+    }
 }
 
 int CheckCmd(char* str, int j)

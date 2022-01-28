@@ -32,7 +32,6 @@
     }
 
 static const char* DISASMCMD = "disasmCmd.txt";
-//static const char* BINCODE = "binCode.bin";
 
 int DisAssembler(const char* BINCODE)
 {
