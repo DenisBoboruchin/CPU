@@ -119,7 +119,36 @@ DEF_CMD(RPOP , 0b00111010,   1,
 ///////////////////////////////////////////////////////////////////
 DEF_CMD(JMP  , 0b11000000,   1,
 {
+    pcpu->ip++;
+    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
 
+    break;
+})
+
+DEF_CMD(JA   , 0b11000001,   1,
+{
+    pcpu->ip++;
+    printf("eeeh\n");
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 > num1)
+    {
+        //pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = 0;
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(MIAY , 0b10001111,   1,
+{
+    pcpu->ip++;
+
+    printf("MIAY!!\n");
+    break;
 })
 
 #endif

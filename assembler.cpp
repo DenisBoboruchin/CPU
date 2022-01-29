@@ -1,21 +1,22 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, ...)                                                     \
+#define DEF_CMD(name, num, ...)                                                         \
     if (!stricmp((strings + index)->str, #name))                                        \
-    {                                                                               \
-        *(codeMassive + *size) = (char) num;                                        \
-        *size += sizeof(char);                                                      \
-                                                                                     \
-        if ((num & 0x40) && (num & 0x80))                                            \
-        {                                                                            \
-            index++;                                                                 \
-            SkipTabs(strings, &index);                                              \
-                                                                                    \
-            break;                                                                   \
-        }                                                                            \
-                                                                                     \
-        if (num & 0x10)                                                             \
-        {                                                                           \
+    {                                                                                   \
+        *(codeMassive + *size) = (char) num;                                   \
+        *size += sizeof(char);                                                          \
+                                                                                        \
+        if ((num & 0x40) && (num & 0x80))                                               \
+        {                                                                                \
+            index++;                                                                      \
+            SkipTabs(strings, &index);                                                     \
+                                                                                            \
+            ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
+            continue;                                                                         \
+        }                                                                                   \
+                                                                                            \
+        if (num & 0x10)                                                                     \
+        {                                                                                   \
             index++;                                                                   \
             SkipTabs(strings, &index);                                                   \
                                                                                            \
@@ -101,7 +102,7 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
 
         #include "commands.h"
 
-        ERROR |= AddToLabel((strings + index)->str, size, labels, nJMP);
+        ERROR |= AddToLabel((strings + index)->str, *size, labels, nJMP);
     }
     #undef DEF_CMD
 
@@ -110,7 +111,7 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
     return ERROR || (!HLTFLG);
 }
 
-int CheckTypeARG(char* str, char* codeMassive, int* size, char num)
+int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
 {
     assert (str != NULL);
     assert (codeMassive != NULL);
@@ -127,9 +128,7 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, char num)
         return NOMISTAKE;
     }
 
-    int value = 0;
-    char checkEnd = 0;
-    if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
+    if (int value = CheckOnNum(str))
     {
         int check = CheckCorrect(num);                         //Äëÿ POP
 
@@ -145,42 +144,83 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, char num)
 int SkipTabs(struct pointStr* strings, int* index)
 {
     while (strlen((strings + *index)->str) == 0)
-        index++;
+        (*index)++;
 }
 
-int AddToLabel(char* str, int* point, struct Label** labels, int* nJMP)
+int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, int nJMP)
+{
+    if (int value = CheckOnNum(str))
+    {
+        *((int*) (codeMassive + *size)) = value;
+        *size += sizeof(int);
+
+        return NOMISTAKE;
+    }
+
+    if (int num = FindMark(str, labels, nJMP))
+    {
+        *((int*) (codeMassive + *size)) = num;
+        *size += sizeof(int);
+
+        return NOMISTAKE;
+    }
+
+    return MISTAKE;
+}
+
+int FindMark(char* str, struct Label** labels, int nJMP)
+{
+    for (int num = 0; num < nJMP; num++)
+    {
+        if (!strcmp(str, (*labels)[num].mark))
+            return (*labels)[num].ip;
+    }
+
+    return 0;
+}
+
+int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)
 {
     assert (str != NULL);
     assert (labels != NULL);
     assert (*labels != NULL);
-    assert (point != NULL);
-    assert (*point >= 0);
+    assert (point >= 0);
 
-    if (!CheckNotNum(str))
+    if (!CheckRepeat(str, labels, *nJMP))
     {
-        (*labels)[*nJMP].ip = *point;
+        (*labels)[*nJMP].ip = point;
         strcpy((*labels)[*nJMP].mark, str);
 
-        *nJMP = *nJMP + 1;
+        (*nJMP)++;
         return NOMISTAKE;
     }
     else
         return MISTAKE;
 }
 
-int CheckNotNum(char* str)
+int CheckRepeat(char* str, struct Label** labels, int nJMP)
 {
-    int value = 0;
-    char checkEnd = 0;
-        if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
+    if (CheckOnNum(str))
+    {
+        printf("%s is unknown command!\n", str);
+        fprintf(logAsm, "%s is unknown command!\n", str);
+
+        return MISTAKE;
+    }
+
+    for (int i = 0; i < nJMP; i++)
+    {
+        if (!strcmp(str, (*labels)[i].mark))
         {
-            printf("%s is unknown command!\n", str);
-            fprintf(logAsm, "%s is unknown command!\n", str);
+            printf("%s occurs twice!\n", str);
+            fprintf(logAsm, "%s occurs twice!\n", str);
 
             return MISTAKE;
         }
-        else
-            return NOMISTAKE;
+
+    }
+
+    return NOMISTAKE;
 }
 
 int OutPutLabel(struct Label* labels, int nJMP)
@@ -194,6 +234,16 @@ int OutPutLabel(struct Label* labels, int nJMP)
         printf("mark:   %s\n", labels[i].mark);
         printf("status: %d\n", labels[i].condition);
     }
+}
+
+int CheckOnNum(char* str)
+{
+    int value = 0;
+    char checkEnd = 0;
+    if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
+        return value;
+    else
+        return 0;
 }
 
 int CheckCmd(char* str, int j)

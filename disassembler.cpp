@@ -105,3 +105,4 @@ void NumToReg(FILE* disasmCmd, int num)
             break;
     }
 }
+

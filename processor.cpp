@@ -40,7 +40,7 @@ void CheckCmd(CPU* pcpu)
 {
     ProcAssert(pcpu);
 
-    switch ((int) *(pcpu->code + pcpu->ip))
+    switch ((int)* ((unsigned char*) pcpu->code + pcpu->ip))
     {
         #include "commands.h"
 

@@ -9,7 +9,7 @@ const char* BINCODE = "binCode.bin";
 int main(void)
 {
     Assembler(CMD);
-    DisAssembler(BINCODE);
+    //DisAssembler(BINCODE);
 
     Execute(BINCODE);
 }

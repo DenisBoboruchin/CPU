@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1643293779 source:c:\programming\codeblocks\project\processor\processor\main.cpp
+1643454892 source:c:\programming\codeblocks\project\processor\processor\main.cpp
 	<stdio.h>
 	"processor.h"
 	"assembler.h"
@@ -12,7 +12,7 @@
 	"MyStack.h"
 	"SortText.h"
 
-1643296162 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
+1643455355 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
 	"processor.h"
 	"commands.h"
 
@@ -32,7 +32,7 @@
 	<assert.h>
 	<stdlib.h>
 
-1643360044 c:\programming\codeblocks\project\processor\processor\assembler.h
+1643452705 c:\programming\codeblocks\project\processor\processor\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -45,16 +45,16 @@
 1643358335 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
 	"SortText.h"
 
-1643358741 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
+1643455379 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
 	"assembler.h"
 	"commands.h"
 
-1643276260 c:\programming\codeblocks\project\processor\processor\enum.h
+1643449235 c:\programming\codeblocks\project\processor\processor\enum.h
 	"commands.h"
 
-1643303028 c:\programming\codeblocks\project\processor\processor\commands.h
+1643453574 c:\programming\codeblocks\project\processor\processor\commands.h
 
-1643301870 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
+1643450407 source:c:\programming\codeblocks\project\processor\processor\disassembler.cpp
 	"assembler.h"
 	"commands.h"
 

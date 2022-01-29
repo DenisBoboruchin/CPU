@@ -1,12 +1,3 @@
-1   PUSH   5
+1   IN    
 2   IN    
-3   RPUSH  rax
-4   OUT   
-5   RPOP   rax
-6   OUT   
-7   PUSH   24
-8   PUSH   24
-9   MUL   
-10  SQRT  
-11  OUT   
-12  HLT   
+3   ADD   

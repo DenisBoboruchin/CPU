@@ -13,7 +13,7 @@ int Execute(const char* BINCODE)
 
     while (true)
     {
-        if (*(cpu.code + cpu.ip) == (char) CMD_HLT)
+        if (*(cpu.code + cpu.ip) == CMD_HLT)
             break;
 
         CheckCmd(&cpu);
@@ -46,6 +46,7 @@ void CheckCmd(CPU* pcpu)
 
         default:
         {
+            printf("%d\n\n", (int) *(pcpu->code + pcpu->ip));
             assert(!"unknown command");
 
             break;
@@ -89,17 +90,17 @@ int GetValue(int* value)
     {
         printf("Error argument!\n");
         printf("Enter the argument again\n");
-        
+
         ClearInputBuf();
-        
+
         return ERRORINPUT;
     }
-    else 
+    else
         return GOODINPUT;
 }
 
 void ClearInputBuf(void)
 {
     while (getchar() != ('\n'))
-        ;
+        continue;
 }
