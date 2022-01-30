@@ -31,7 +31,7 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
     char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
 
     pcpu->code = code;
-    pcpu->ip = 0;
+    pcpu->ip = STARTINDEX;
 
     ProcAssert(pcpu);
 }

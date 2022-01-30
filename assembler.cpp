@@ -157,7 +157,8 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         return NOMISTAKE;
     }
 
-    if (int num = FindMark(str, labels, nJMP))
+    int num = FindMark(str, labels, nJMP);
+    if (num != NOTFOUND)
     {
         *((int*) (codeMassive + *size)) = num;
         *size += sizeof(int);
@@ -171,12 +172,10 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
 int FindMark(char* str, struct Label** labels, int nJMP)
 {
     for (int num = 0; num < nJMP; num++)
-    {
         if (!strcmp(str, (*labels)[num].mark))
             return (*labels)[num].ip;
-    }
 
-    return 0;
+    return NOTFOUND;
 }
 
 int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)

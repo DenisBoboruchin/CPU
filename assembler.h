@@ -14,6 +14,8 @@ const int ERRORCMD  = -17;
 const int MISTAKE   =   1;
 const int NOMISTAKE =   0;
 
+const int NOTFOUND = -1;
+
 const char RAX  = 1;
 const char RBX  = 2;
 const char RCX  = 3;

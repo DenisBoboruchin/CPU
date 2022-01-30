@@ -15,6 +15,8 @@ const int NUMREGS = 5;
 const int ERRORINPUT = 0;
 const int GOODINPUT  = 1;
 
+const int STARTINDEX = 0;
+
 struct CPU
 {
     Stack stk = {};

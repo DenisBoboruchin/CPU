@@ -84,6 +84,7 @@ DEF_CMD(PUSH , 0b00010001,   1,
 {
     pcpu->ip++;
     StackPush(&pcpu->stk, *((int*) (pcpu->code + pcpu->ip)));
+    printf("%d\n", *((int*) (pcpu->code + pcpu->ip)));
 
     pcpu->ip += sizeof(int);
     break;
@@ -128,14 +129,104 @@ DEF_CMD(JMP  , 0b11000000,   1,
 DEF_CMD(JA   , 0b11000001,   1,
 {
     pcpu->ip++;
-    printf("eeeh\n");
+
     int num1 = StackPop(&pcpu->stk);
     int num2 = StackPop(&pcpu->stk);
 
     if (num2 > num1)
     {
-        //pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
-        pcpu->ip = 0;
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JAE   , 0b11000010,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 >= num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JB   , 0b11000011,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 < num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JBE   , 0b11000100,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 <= num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JE   , 0b11000101,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 == num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JNE   , 0b11000110,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 != num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
         break;
     }
 

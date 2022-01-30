@@ -1,7 +1,8 @@
+youhoo
+MIAY
 in
 in
-add
+ja youhoo
 MIAY
 MIAY
-out
 hlt
