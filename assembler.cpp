@@ -9,9 +9,13 @@
         if ((num & 0x40) && (num & 0x80))                                               \
         {                                                                                \
             index++;                                                                      \
-            SkipTabs(strings, &index);                                                     \
+            SkipTabs(strings, &index);                                                      \
                                                                                             \
-            ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
+            if (*nPass == FIRSTPASS)                                                        \
+                *size += sizeof(int);                                                           \
+            else if (*nPass == SECONDPASS)                                                      \
+                ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
+                                                                                                \
             continue;                                                                         \
         }                                                                                   \
                                                                                             \
@@ -21,6 +25,8 @@
             SkipTabs(strings, &index);                                                   \
                                                                                            \
             ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);         \
+                                                                                            \
+            continue;                                                                       \
         }                                                                           \
                                                                                     \
         continue;                                                                   \
@@ -38,10 +44,13 @@ char* Assembler(const char* CMD)
 
     char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
     struct Label* labels = (struct Label*) calloc(NUMLBL, sizeof(struct Label));
-    int sizeCode = 0;
-    int nJMP = 0;
 
-    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP);
+    int sizeCode = STARTSIZE;
+    int nJMP = STARTnJMP;
+    int nPass = FIRSTPASS;
+
+    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
+    ERRORFLAG |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
 
     OutPutLabel(labels, nJMP);
 
@@ -72,7 +81,7 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
 
     for (size_t i = 0; i < sizeBuf; i++)
     {
-        if ((*(buffer + i) == '\n') || (*(buffer + i) == ' '))
+        if ((*(buffer + i) == '\n') || (*(buffer + i) == ' ') || (*(buffer + i) == '\t'))
         {
             *(buffer + i) = '\0';
             numLines++;
@@ -82,13 +91,15 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
     return numLines;
 }
 
-int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP)
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP, int* nPass)
 {
     assert (strings != NULL);
     assert (codeMassive != NULL);
     assert (size != NULL);
     assert (*size >= 0);
     assert (numLines >= 0);
+
+    *size = 0;
 
     int ERROR  = NOMISTAKE;
     int HLTFLG = 0;
@@ -102,11 +113,18 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
 
         #include "commands.h"
 
-        ERROR |= AddToLabel((strings + index)->str, *size, labels, nJMP);
+        if (*nPass == FIRSTPASS)
+            ERROR |= AddToLabel((strings + index)->str, *size, labels, nJMP);
     }
     #undef DEF_CMD
 
-    LogHLT(HLTFLG);
+    if (*nPass == SECONDPASS)
+    {
+        ERROR |= CheckLabels(labels, *nJMP);
+        LogHLT(HLTFLG);
+    }
+
+    (*nPass)++;
 
     return ERROR || (!HLTFLG);
 }
@@ -166,6 +184,9 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         return NOMISTAKE;
     }
 
+    printf("incorrect jmp argument\n");
+    fprintf(logAsm, "incorrect jmp argument\n");
+
     return MISTAKE;
 }
 
@@ -173,7 +194,10 @@ int FindMark(char* str, struct Label** labels, int nJMP)
 {
     for (int num = 0; num < nJMP; num++)
         if (!strcmp(str, (*labels)[num].mark))
+        {
+            (*labels)[num].status = 1;
             return (*labels)[num].ip;
+        }
 
     return NOTFOUND;
 }
@@ -216,7 +240,22 @@ int CheckRepeat(char* str, struct Label** labels, int nJMP)
 
             return MISTAKE;
         }
+    }
 
+    return NOMISTAKE;
+}
+
+int CheckLabels(struct Label** labels, int nJMP)
+{
+    for (int index = 0; index < nJMP; index++)
+    {
+        if ((*labels)[index].status == 0)
+        {
+            printf("%s is unknown command!\n", (*labels)[index].mark);
+            fprintf(logAsm, "%s is unknown command!\n", (*labels)[index].mark);
+
+            return MISTAKE;
+        }
     }
 
     return NOMISTAKE;
@@ -231,7 +270,7 @@ int OutPutLabel(struct Label* labels, int nJMP)
     {
         printf("ip:     %d\n", labels[i].ip);
         printf("mark:   %s\n", labels[i].mark);
-        printf("status: %d\n", labels[i].condition);
+        printf("status: %d\n", labels[i].status);
     }
 }
 

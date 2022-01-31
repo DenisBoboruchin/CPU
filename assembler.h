@@ -16,6 +16,11 @@ const int NOMISTAKE =   0;
 
 const int NOTFOUND = -1;
 
+const int FIRSTPASS  = 1;
+const int SECONDPASS = 2;
+const int STARTSIZE  = 0;
+const int STARTnJMP  = 0;
+
 const char RAX  = 1;
 const char RBX  = 2;
 const char RCX  = 3;
@@ -29,12 +34,12 @@ struct Label
 {
     int ip = 0;
     char mark[MAX_MRKSZ] = {};
-    int condition = 0;
+    int status = 0;
 };
 
 char* Assembler(const char* CMD);
 size_t NumberOfLines(char* buffer, const size_t sizeBuf);
-int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP);
+int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLines, struct Label** labels, int* nJMP, int* nPass);
 int CheckTypeARG(char* str, char* codeMassive, int* size, int num);
 int CheckCmd(char* str, int j);
 char CheckRegs(char* str);
@@ -53,6 +58,7 @@ void NumToReg(FILE* disasmCmd, int num);
 int AddToLabel(char* str, int size, struct Label** labels, int* nJMP);
 int WorkWthJMP(char* str, char* codeMassive, int* point, struct Label** labels, int nJMP);
 int FindMark(char* str, struct Label** labels, int nJMP);
+int CheckLabels(struct Label** labels, int nJMP);
 int CheckRepeat(char* str, struct Label** labels, int nJMP);
 int OutPutLabel(struct Label* labels, int nJMP);
 
