@@ -144,7 +144,7 @@ DEF_CMD(JA   , 0b11000001,   1,
     break;
 })
 
-DEF_CMD(JAE   , 0b11000010,   1,
+DEF_CMD(JAE   , 0b11001010,   1,
 {
     pcpu->ip++;
 
@@ -234,6 +234,24 @@ DEF_CMD(JNE   , 0b11000110,   1,
     break;
 })
 
+DEF_CMD(CALL   , 0b11000111,   1,
+{
+    pcpu->ip++;
+
+    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+    break;
+})
+
+DEF_CMD(RET   , 0b11001000,   1,
+{
+    pcpu->ip++;
+
+    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+    break;
+})
+///////////////////////////////////////////////////////////////////
 DEF_CMD(MIAY , 0b10001111,   1,
 {
     pcpu->ip++;

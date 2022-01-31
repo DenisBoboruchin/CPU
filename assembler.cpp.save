@@ -11,10 +11,16 @@
             index++;                                                                      \
             SkipTabs(strings, &index);                                                      \
                                                                                             \
-            if (*nPass == FIRSTPASS)                                                        \
-                *size += sizeof(int);                                                           \
-            else if (*nPass == SECONDPASS)                                                      \
+            if (*nPass == FIRSTPASS)                                \
+            {                                                       \
+                *size += sizeof(int);                                                 \
+                continue;                                                              \
+            }                                                                           \
+                                                                                            \
+            if (stricmp("RET", #name))                                        \
                 ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
+            else                                                                                \
+                ERROR |= WorkWthRET(codeMassive, size, labels);                                    \
                                                                                                 \
             continue;                                                                         \
         }                                                                                   \
@@ -50,7 +56,7 @@ char* Assembler(const char* CMD)
     int nPass = FIRSTPASS;
 
     int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
-    ERRORFLAG |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
+    ERRORFLAG    |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
 
     OutPutLabel(labels, nJMP);
 
@@ -81,7 +87,7 @@ size_t NumberOfLines(char* buffer, const size_t sizeBuf)
 
     for (size_t i = 0; i < sizeBuf; i++)
     {
-        if ((*(buffer + i) == '\n') || (*(buffer + i) == ' '))
+        if ((*(buffer + i) == '\n') || (*(buffer + i) == ' ') || (*(buffer + i) == '\t'))
         {
             *(buffer + i) = '\0';
             numLines++;
@@ -172,6 +178,7 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = value;
         *size += sizeof(int);
 
+        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
@@ -181,11 +188,30 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = num;
         *size += sizeof(int);
 
+        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
     printf("incorrect jmp argument\n");
     fprintf(logAsm, "incorrect jmp argument\n");
+
+    return MISTAKE;
+}
+
+int WorkWthRET(char* codeMassive, int* size, struct Label** labels)
+{
+    int IP = (*labels)[NUMLBL].ip;
+
+    if (IP != STip)
+    {
+        *((int*) (codeMassive + *size)) = IP;
+        *size += sizeof(int);
+
+        return NOMISTAKE;
+    }
+
+    printf("Func error!\n");
+    fprintf(logAsm, "Func error\n");
 
     return MISTAKE;
 }

@@ -16,10 +16,11 @@ const int NOMISTAKE =   0;
 
 const int NOTFOUND = -1;
 
-const int FIRSTPASS  = 1;
-const int SECONDPASS = 2;
-const int STARTSIZE  = 0;
-const int STARTnJMP  = 0;
+const int FIRSTPASS  =  1;
+const int SECONDPASS =  2;
+const int STARTSIZE  =  0;
+const int STARTnJMP  =  0;
+const int LASTMARK   = -1;
 
 const char RAX  = 1;
 const char RBX  = 2;
@@ -29,10 +30,11 @@ const char NREG = 0;
 
 const int NUMLBL    = 100;
 const int MAX_MRKSZ =  15;
+const int STip = -1;
 
 struct Label
 {
-    int ip = 0;
+    int ip = STip;
     char mark[MAX_MRKSZ] = {};
     int status = 0;
 };
@@ -57,6 +59,7 @@ void NumToReg(FILE* disasmCmd, int num);
 
 int AddToLabel(char* str, int size, struct Label** labels, int* nJMP);
 int WorkWthJMP(char* str, char* codeMassive, int* point, struct Label** labels, int nJMP);
+int WorkWthRET(char* codeMassive, int* size, struct Label** labels);
 int FindMark(char* str, struct Label** labels, int nJMP);
 int CheckLabels(struct Label** labels, int nJMP);
 int CheckRepeat(char* str, struct Label** labels, int nJMP);

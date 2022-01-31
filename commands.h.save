@@ -135,9 +135,7 @@ DEF_CMD(JA   , 0b11000001,   1,
 
     if (num2 > num1)
     {
-        printf("%d\n", *((int*) (pcpu->code + pcpu->ip)));
         pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
-        printf("%d\n", *((int*) (pcpu->code + pcpu->ip)));
 
         break;
     }
@@ -146,6 +144,114 @@ DEF_CMD(JA   , 0b11000001,   1,
     break;
 })
 
+DEF_CMD(JAE   , 0b11001010,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 >= num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JB   , 0b11000011,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 < num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JBE   , 0b11000100,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 <= num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JE   , 0b11000101,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 == num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(JNE   , 0b11000110,   1,
+{
+    pcpu->ip++;
+
+    int num1 = StackPop(&pcpu->stk);
+    int num2 = StackPop(&pcpu->stk);
+
+    if (num2 != num1)
+    {
+        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+        break;
+    }
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(CALL   , 0b11000111,   1,
+{
+    pcpu->ip++;
+    
+    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+    break;
+})
+
+DEF_CMD(RET   , 0b11001000,   1,
+{
+    pcpu->ip++;
+    
+    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+
+    break;
+})
+///////////////////////////////////////////////////////////////////
 DEF_CMD(MIAY , 0b10001111,   1,
 {
     pcpu->ip++;

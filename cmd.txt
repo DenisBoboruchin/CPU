@@ -1,13 +1,17 @@
 MIAY
-
 in
-
 in
-jae      
- youhoo
-	MIAY
-
-
+add
+out
+call func1:
 MIAY
-    	youhoo
 hlt
+
+func1:
+in
+in
+add
+out
+MIAY
+ret
+

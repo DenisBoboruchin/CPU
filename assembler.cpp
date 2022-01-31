@@ -8,13 +8,23 @@
                                                                                         \
         if ((num & 0x40) && (num & 0x80))                                               \
         {                                                                                \
-            index++;                                                                      \
-            SkipTabs(strings, &index);                                                      \
+            if (*nPass == FIRSTPASS)                                \
+            {                                                       \
+                index++;                                                                \
+                *size += sizeof(int);                                                 \
+                                                                                      \
+                continue;                                                              \
+            }                                                                           \
                                                                                             \
-            if (*nPass == FIRSTPASS)                                                        \
-                *size += sizeof(int);                                                           \
-            else if (*nPass == SECONDPASS)                                                      \
+            if (stricmp("RET", #name))                                                            \
+            {                                                                                      \
+                index++;                                                                      \
+                SkipTabs(strings, &index);                                                      \
+                                                                                                \
                 ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
+            }                                                                                    \
+            else                                                                                \
+                ERROR |= WorkWthRET(codeMassive, size, labels);                                    \
                                                                                                 \
             continue;                                                                         \
         }                                                                                   \
@@ -50,7 +60,7 @@ char* Assembler(const char* CMD)
     int nPass = FIRSTPASS;
 
     int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
-    ERRORFLAG |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
+    ERRORFLAG    |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
 
     OutPutLabel(labels, nJMP);
 
@@ -172,6 +182,7 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = value;
         *size += sizeof(int);
 
+        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
@@ -181,11 +192,30 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = num;
         *size += sizeof(int);
 
+        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
     printf("incorrect jmp argument\n");
     fprintf(logAsm, "incorrect jmp argument\n");
+
+    return MISTAKE;
+}
+
+int WorkWthRET(char* codeMassive, int* size, struct Label** labels)
+{
+    int IP = (*labels)[NUMLBL].ip;
+
+    if (IP != STip)
+    {
+        *((int*) (codeMassive + *size)) = IP;
+        *size += sizeof(int);
+
+        return NOMISTAKE;
+    }
+
+    printf("Func error!\n");
+    fprintf(logAsm, "Func error\n");
 
     return MISTAKE;
 }
