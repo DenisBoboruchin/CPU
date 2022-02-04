@@ -46,18 +46,18 @@ static const char* BINCODE = "binCode.bin";
 
 char* Assembler(const char* CMD)
 {
-    size_t sizeBuf = GetSizeBuf(CMD);
-    char* buffer = CreateBuf(&sizeBuf, CMD);
+    size_t  sizeBuf = GetSizeBuf(CMD);
+    char*   buffer  = CreateBuf(&sizeBuf, CMD);
 
-    size_t numLines = NumberOfLines(buffer, sizeBuf);
-    struct pointStr* strings = CrtorStrs(numLines, sizeBuf, buffer);
+    size_t numLines          = NumberOfLines (buffer, sizeBuf);
+    struct pointStr* strings = CrtorStrs (numLines, sizeBuf, buffer);
 
-    char* codeMassive = (char*) calloc(numLines + 1, sizeof(int));
-    struct Label* labels = (struct Label*) calloc(NUMLBL, sizeof(struct Label));
+    char*  codeMassive   = (char*) calloc (numLines + 1, sizeof(int));
+    struct Label* labels = (struct Label*) calloc (NUMLBL, sizeof(struct Label));
 
     int sizeCode = STARTSIZE;
-    int nJMP = STARTnJMP;
-    int nPass = FIRSTPASS;
+    int nJMP     = STARTnJMP;
+    int nPass    = FIRSTPASS;
 
     int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
     ERRORFLAG    |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
@@ -68,11 +68,11 @@ char* Assembler(const char* CMD)
 
     FILE* binCode = fopen(BINCODE, "wb");
 
-    assert(fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
+    assert (fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
 
     assert (fclose(binCode) == 0);
 
-    //free(codeMassive);
+    free(codeMassive);
     free(buffer);
     free(strings);
     free(labels);

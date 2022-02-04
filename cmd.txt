@@ -8,8 +8,8 @@ MIAY
 hlt
 
 func1:
-in
-in
+push 7
+push 5
 add
 out
 ret

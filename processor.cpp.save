@@ -36,7 +36,8 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
     assert (sizeBuf == fread(RAM, sizeof(char), sizeBuf, CODE));
 
     pcpu->RAM = RAM;
-    pcpu->ip = STARTINDEX;
+    pcpu->Mem = RAM + sizeBuf;
+    pcpu->ip  = STARTINDEX;
 
     ProcAssert(pcpu);
 }

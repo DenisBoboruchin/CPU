@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1643797116 source:c:\programming\codeblocks\project\processor\processor\main.cpp
+1644005106 source:c:\programming\codeblocks\project\processor\processor\main.cpp
 	<stdio.h>
 	"processor.h"
 	"assembler.h"
 
-1644003716 c:\programming\codeblocks\project\processor\processor\processor.h
+1644005289 c:\programming\codeblocks\project\processor\processor\processor.h
 	<stdio.h>
 	<assert.h>
 	<math.h>
@@ -12,7 +12,7 @@
 	"MyStack.h"
 	"SortText.h"
 
-1644003751 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
+1644005106 source:c:\programming\codeblocks\project\processor\processor\processor.cpp
 	"processor.h"
 	"commands.h"
 
@@ -32,7 +32,7 @@
 	<assert.h>
 	<stdlib.h>
 
-1643635904 c:\programming\codeblocks\project\processor\processor\assembler.h
+1644005289 c:\programming\codeblocks\project\processor\processor\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -45,7 +45,7 @@
 1643358335 source:c:\programming\codeblocks\project\processor\processor\sorttext.cpp
 	"SortText.h"
 
-1643637584 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
+1644004743 source:c:\programming\codeblocks\project\processor\processor\assembler.cpp
 	"assembler.h"
 	"commands.h"
 

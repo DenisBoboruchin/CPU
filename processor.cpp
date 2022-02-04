@@ -37,7 +37,7 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
 
     pcpu->RAM = RAM;
     pcpu->Mem = RAM + sizeBuf;
-    pcpu->ip = STARTINDEX;
+    pcpu->ip  = STARTINDEX;
 
     ProcAssert(pcpu);
 }
@@ -77,6 +77,7 @@ int ProcDtor(CPU* pcpu)
 
     StackDtor(&pcpu->stk);
     free(pcpu->RAM);
+    pcpu->Mem = NULL;
     DestReg(pcpu);
     pcpu->ip = DESTROYED;
 }
