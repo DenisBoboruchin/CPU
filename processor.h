@@ -9,8 +9,10 @@
 #include "MyStack.h"
 #include "SortText.h"
 
-const int DESTROYED = -333;
-const int NUMREGS = 5;
+const int DESTROYED   = -333;
+const int NUMREGS     =    5;
+const int SIZERAM     = 2048;
+const int MAXCODESIZE =  500;
 
 const int ERRORINPUT = 0;
 const int GOODINPUT  = 1;
@@ -19,10 +21,11 @@ const int STARTINDEX = 0;
 
 struct CPU
 {
-    Stack stk = {};
-    int registers[NUMREGS] = {};
-    char* code = {};
-    size_t ip = 0;
+    Stack  stk                = {};
+    int    registers[NUMREGS] = {};
+    char*  RAM                = {};
+    char*  Mem                = {};
+    size_t ip                 =  0;
 };
 
 int Execute(const char* BINCODE);

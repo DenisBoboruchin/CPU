@@ -83,8 +83,8 @@ DEF_CMD(OUT  , 0b00000111,   0,
 DEF_CMD(PUSH , 0b00010001,   1,
 {
     pcpu->ip++;
-    StackPush(&pcpu->stk, *((int*) (pcpu->code + pcpu->ip)));
-    printf("%d\n", *((int*) (pcpu->code + pcpu->ip)));
+    StackPush(&pcpu->stk, *((int*) (pcpu->RAM + pcpu->ip)));
+    printf("%d\n", *((int*) (pcpu->RAM + pcpu->ip)));
 
     pcpu->ip += sizeof(int);
     break;
@@ -102,7 +102,7 @@ DEF_CMD(RPUSH, 0b00110001,   1,
 {
     pcpu->ip++;
 
-    pcpu->registers[*(pcpu->code + pcpu->ip)] = StackPop(&pcpu->stk);
+    pcpu->registers[*(pcpu->RAM + pcpu->ip)] = StackPop(&pcpu->stk);
 
     pcpu->ip++;
     break;
@@ -112,7 +112,7 @@ DEF_CMD(RPOP , 0b00111010,   1,
 {
     pcpu->ip++;
 
-    StackPush(&pcpu->stk, pcpu->registers[*(pcpu->code + pcpu->ip)]);
+    StackPush(&pcpu->stk, pcpu->registers[*(pcpu->RAM + pcpu->ip)]);
 
     pcpu->ip++;
     break;
@@ -121,7 +121,7 @@ DEF_CMD(RPOP , 0b00111010,   1,
 DEF_CMD(JMP  , 0b11000000,   1,
 {
     pcpu->ip++;
-    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+    pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
     break;
 })
@@ -135,7 +135,7 @@ DEF_CMD(JA   , 0b11000001,   1,
 
     if (num2 > num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -153,7 +153,7 @@ DEF_CMD(JAE   , 0b11001010,   1,
 
     if (num2 >= num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -171,7 +171,7 @@ DEF_CMD(JB   , 0b11000011,   1,
 
     if (num2 < num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -189,7 +189,7 @@ DEF_CMD(JBE   , 0b11000100,   1,
 
     if (num2 <= num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -207,7 +207,7 @@ DEF_CMD(JE   , 0b11000101,   1,
 
     if (num2 == num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -225,7 +225,7 @@ DEF_CMD(JNE   , 0b11000110,   1,
 
     if (num2 != num1)
     {
-        pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+        pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
         break;
     }
@@ -238,7 +238,7 @@ DEF_CMD(CALL   , 0b11000111,   1,
 {
     pcpu->ip++;
 
-    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+    pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
     break;
 })
@@ -247,7 +247,7 @@ DEF_CMD(RET   , 0b11001000,   1,
 {
     pcpu->ip++;
 
-    pcpu->ip = *((int*) (pcpu->code + pcpu->ip));
+    pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
     break;
 })

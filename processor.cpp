@@ -11,9 +11,10 @@ int Execute(const char* BINCODE)
 
     ProcCtor(&cpu, BINCODE);
 
+
     while (true)
     {
-        if (*(cpu.code + cpu.ip) == (char) CMD_HLT)
+        if (*(cpu.RAM + cpu.ip) == (char) CMD_HLT)
             break;
 
         CheckCmd(&cpu);
@@ -28,9 +29,14 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
 
     size_t sizeBuf = GetSizeBuf(BINCODE);
 
-    char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
+    //char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
+    char* RAM = (char*) calloc(SIZERAM, sizeof(char));
 
-    pcpu->code = code;
+    FILE* CODE = fopen(BINCODE, "r");
+    assert (sizeBuf == fread(RAM, sizeof(char), sizeBuf, CODE));
+
+    pcpu->RAM = RAM;
+    pcpu->Mem = RAM + sizeBuf;
     pcpu->ip = STARTINDEX;
 
     ProcAssert(pcpu);
@@ -40,7 +46,7 @@ void CheckCmd(CPU* pcpu)
 {
     ProcAssert(pcpu);
 
-    switch ((int)* ((unsigned char*) pcpu->code + pcpu->ip))
+    switch ((int)* ((unsigned char*) pcpu->RAM + pcpu->ip))
     {
         #include "commands.h"
 
@@ -53,13 +59,16 @@ void CheckCmd(CPU* pcpu)
     }
 
     #undef DEF_CMD
+
+    ProcAssert(pcpu);
 }
 
 int ProcAssert(CPU* pcpu)
 {
     assert (pcpu != NULL);
-    assert (pcpu->code != NULL);
+    assert (pcpu->RAM != NULL);
     assert (pcpu->ip >= 0);
+    assert (pcpu->ip < MAXCODESIZE);
 }
 
 int ProcDtor(CPU* pcpu)
@@ -67,7 +76,7 @@ int ProcDtor(CPU* pcpu)
     ProcAssert(pcpu);
 
     StackDtor(&pcpu->stk);
-    free(pcpu->code);
+    free(pcpu->RAM);
     DestReg(pcpu);
     pcpu->ip = DESTROYED;
 }

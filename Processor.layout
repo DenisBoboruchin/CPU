@@ -1,63 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="commands.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4600" topLine="228" />
-		</Cursor>
-	</File>
-	<File name="SortText.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1500" topLine="8" />
-		</Cursor>
-	</File>
-	<File name="processor.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="260" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="244" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="assembler.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="886" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="assembler.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="583" topLine="14" />
+			<Cursor1 position="583" topLine="0" />
 		</Cursor>
-	</File>
-	<File name="MyStack.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="864" topLine="25" />
-		</Cursor>
-		<Folding>
-			<Collapse line="17" />
-		</Folding>
-	</File>
-	<File name="processor.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="294" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="disassembler.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3305" topLine="4" />
-		</Cursor>
-		<Folding>
-			<Collapse line="36" />
-			<Collapse line="46" />
-			<Collapse line="48" />
-			<Collapse line="61" />
-			<Collapse line="68" />
-			<Collapse line="72" />
-			<Collapse line="83" />
-			<Collapse line="85" />
-		</Folding>
 	</File>
 	<File name="enum.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -67,6 +19,11 @@
 			<Collapse line="0" />
 			<Collapse line="7" />
 		</Folding>
+	</File>
+	<File name="commands.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4600" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="MyStack.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -96,6 +53,39 @@
 			<Collapse line="294" />
 			<Collapse line="308" />
 			<Collapse line="312" />
+		</Folding>
+	</File>
+	<File name="disassembler.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3305" topLine="4" />
+		</Cursor>
+		<Folding>
+			<Collapse line="36" />
+			<Collapse line="46" />
+			<Collapse line="48" />
+			<Collapse line="61" />
+			<Collapse line="68" />
+			<Collapse line="72" />
+			<Collapse line="83" />
+			<Collapse line="85" />
+		</Folding>
+	</File>
+	<File name="assembler.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="886" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="processor.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="294" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MyStack.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="864" topLine="25" />
+		</Cursor>
+		<Folding>
+			<Collapse line="17" />
 		</Folding>
 	</File>
 	<File name="SortText.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -134,5 +124,15 @@
 			<Collapse line="313" />
 			<Collapse line="322" />
 		</Folding>
+	</File>
+	<File name="SortText.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1500" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="processor.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="260" topLine="0" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
