@@ -84,7 +84,6 @@ DEF_CMD(PUSH , 0b00010001,   1,
 {
     pcpu->ip++;
     StackPush(&pcpu->stk, *((int*) (pcpu->RAM + pcpu->ip)));
-    printf("%d\n", *((int*) (pcpu->RAM + pcpu->ip)));
 
     pcpu->ip += sizeof(int);
     break;

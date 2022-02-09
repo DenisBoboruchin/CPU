@@ -5,6 +5,7 @@
 #include <string.h>
 #include <assert.h>
 
+#include "MyStack.h"
 #include "SortText.h"
 #include "enum.h"
 
@@ -28,15 +29,18 @@ const char RCX  = 3;
 const char RDX  = 4;
 const char NREG = 0;
 
-const int NUMLBL    = 100;
-const int MAX_MRKSZ =  15;
-const int STip = -1;
+const int NUMLBL    =  100;
+const int MAX_MRKSZ =   15;
+const int STip      =   -1;
+const int CALLLBL   =    2;
+const int GOODLBL   = -325;
+const int BADLBL    = -123;
 
 struct Label
 {
     int ip = STip;
     char mark[MAX_MRKSZ] = {};
-    int status = 0;
+    int status = BADLBL;
 };
 
 char*  Assembler     (const char* CMD);
@@ -57,9 +61,13 @@ int  DisAssembler (const char* BINCODE);
 void Disasembling (FILE* disasmCmd, char* code, int* ip, int* index);
 void NumToReg     (FILE* disasmCmd, int num);
 
+int CallAndRet  (char* str, int size, struct Label** labels, int nJMP, Stack* stkCall);
 int AddToLabel  (char* str, int size, struct Label** labels, int* nJMP);
+int WorkWthCall(struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP);
 int WorkWthJMP  (char* str, char* codeMassive, int* point, struct Label** labels, int nJMP);
-int WorkWthRET  (char* codeMassive, int* size, struct Label** labels);
+int CheckTypeJmp(const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP, Stack* stkCall);
+int WorkWthRET  (char* codeMassive, int* size, struct Label** labels, Stack* stkCall);
+int FindLabel(char* str, struct Label** labels, int nJMP);
 int FindMark    (char* str, struct Label** labels, int nJMP);
 int CheckLabels (struct Label** labels, int nJMP);
 int CheckRepeat (char* str, struct Label** labels, int nJMP);

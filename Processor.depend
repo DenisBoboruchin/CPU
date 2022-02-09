@@ -58,3 +58,63 @@
 	"assembler.h"
 	"commands.h"
 
+1644438950 source:c:\programming\codeblocks\project\processor\proc\cpu\assembler.cpp
+	"assembler.h"
+	"commands.h"
+
+1644429022 c:\programming\codeblocks\project\processor\proc\cpu\assembler.h
+	<stdio.h>
+	<string.h>
+	<assert.h>
+	"MyStack.h"
+	"SortText.h"
+	"enum.h"
+
+1644414956 c:\programming\codeblocks\project\processor\proc\cpu\sorttext.h
+	<stdio.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<assert.h>
+	<ctype.h>
+	<math.h>
+
+1644414956 c:\programming\codeblocks\project\processor\proc\cpu\enum.h
+	"commands.h"
+
+1644439018 c:\programming\codeblocks\project\processor\proc\cpu\commands.h
+
+1644438537 source:c:\programming\codeblocks\project\processor\proc\cpu\disassembler.cpp
+	"assembler.h"
+	"commands.h"
+
+1644434811 source:c:\programming\codeblocks\project\processor\proc\cpu\main.cpp
+	<stdio.h>
+	"processor.h"
+	"assembler.h"
+
+1644414956 c:\programming\codeblocks\project\processor\proc\cpu\processor.h
+	<stdio.h>
+	<assert.h>
+	<math.h>
+	"enum.h"
+	"MyStack.h"
+	"SortText.h"
+
+1644414956 c:\programming\codeblocks\project\processor\proc\cpu\mystack.h
+	<stdio.h>
+	<assert.h>
+	<stdlib.h>
+
+1644414956 source:c:\programming\codeblocks\project\processor\proc\cpu\mystack.cpp
+	"MyStack.h"
+
+1644438829 source:c:\programming\codeblocks\project\processor\proc\cpu\processor.cpp
+	"processor.h"
+	"commands.h"
+
+1644414956 source:c:\programming\codeblocks\project\processor\proc\cpu\sorttext.cpp
+	"SortText.h"
+

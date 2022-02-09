@@ -11,22 +11,16 @@
             if (*nPass == FIRSTPASS)                                \
             {                                                       \
                 index++;                                                                \
-                *size += sizeof(int);                                                 \
+                *size += sizeof(int);                                                     \
+                if (!stricmp((strings + index)->str, "RET"))                         \
+                    index--;                                                         \
                                                                                       \
                 continue;                                                              \
             }                                                                           \
-                                                                                            \
-            if (stricmp("RET", #name))                                                            \
-            {                                                                                      \
-                index++;                                                                      \
-                SkipTabs(strings, &index);                                                      \
-                                                                                                \
-                ERROR |= WorkWthJMP((strings + index)->str, codeMassive, size, labels, *nJMP);  \
-            }                                                                                    \
-            else                                                                                \
-                ERROR |= WorkWthRET(codeMassive, size, labels);                                    \
-                                                                                                \
-            continue;                                                                         \
+                                                                                                        \
+            ERROR |= CheckTypeJmp(#name, strings, &index, codeMassive, size, labels, *nJMP, &stkCall);  \
+                                                                                                        \
+            continue;                                                                                   \
         }                                                                                   \
                                                                                             \
         if (num & 0x10)                                                                     \
@@ -110,6 +104,8 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
     assert (numLines >= 0);
 
     *size = 0;
+    Stack stkCall = {};
+    StackCtor(&stkCall);
 
     int ERROR  = NOMISTAKE;
     int HLTFLG = 0;
@@ -125,6 +121,8 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
 
         if (*nPass == FIRSTPASS)
             ERROR |= AddToLabel((strings + index)->str, *size, labels, nJMP);
+        else if (*nPass == SECONDPASS)
+            ERROR |= CallAndRet((strings + index)->str, *size, labels, *nJMP, &stkCall);
     }
     #undef DEF_CMD
 
@@ -133,6 +131,8 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
         ERROR |= CheckLabels(labels, *nJMP);
         LogHLT(HLTFLG);
     }
+
+    StackDtor(&stkCall);
 
     (*nPass)++;
 
@@ -175,6 +175,42 @@ int SkipTabs(struct pointStr* strings, int* index)
         (*index)++;
 }
 
+int CheckTypeJmp(const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP, Stack* stkCall)
+{
+    if (!stricmp("CALL", name))
+        return WorkWthCall(strings, index, codeMassive, size, labels, nJMP);
+
+    if (!stricmp("RET",  name))
+        return WorkWthRET(codeMassive, size, labels, stkCall);
+
+    (*index)++;
+    SkipTabs(strings, index);
+
+    return WorkWthJMP((strings + *index)->str, codeMassive, size, labels, nJMP);
+}
+
+int WorkWthCall(struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP)
+{
+    (*index)++;
+    SkipTabs(strings, index);
+
+    int num = FindLabel((strings + *index)->str, labels, nJMP);
+    if (num != NOTFOUND)
+    {
+        *((int*) (codeMassive + *size)) = (*labels)[num].ip;
+        *size += sizeof(int);
+
+        (*labels)[num].status = *size;
+
+        return NOMISTAKE;
+    }
+
+    printf("incorrect call argument\n");
+    fprintf(logAsm, "incorrect call argument\n");
+
+    return MISTAKE;
+}
+
 int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, int nJMP)
 {
     if (int value = CheckOnNum(str))
@@ -182,7 +218,6 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = value;
         *size += sizeof(int);
 
-        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
@@ -192,7 +227,6 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         *((int*) (codeMassive + *size)) = num;
         *size += sizeof(int);
 
-        (*labels)[NUMLBL].ip = *size;
         return NOMISTAKE;
     }
 
@@ -202,9 +236,14 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
     return MISTAKE;
 }
 
-int WorkWthRET(char* codeMassive, int* size, struct Label** labels)
+int WorkWthRET(char* codeMassive, int* size, struct Label** labels, Stack* stkCall)
 {
-    int IP = (*labels)[NUMLBL].ip;
+    *((int*) (codeMassive + *size)) = StackPop(stkCall);
+    *size += sizeof(int);
+
+    return NOMISTAKE;
+
+    /*int IP = (*labels)[NUMLBL].ip;
 
     if (IP != STip)
     {
@@ -212,7 +251,7 @@ int WorkWthRET(char* codeMassive, int* size, struct Label** labels)
         *size += sizeof(int);
 
         return NOMISTAKE;
-    }
+    } */
 
     printf("Func error!\n");
     fprintf(logAsm, "Func error\n");
@@ -225,9 +264,18 @@ int FindMark(char* str, struct Label** labels, int nJMP)
     for (int num = 0; num < nJMP; num++)
         if (!strcmp(str, (*labels)[num].mark))
         {
-            (*labels)[num].status = 1;
+            (*labels)[num].status = GOODLBL;
             return (*labels)[num].ip;
         }
+
+    return NOTFOUND;
+}
+
+int FindLabel(char* str, struct Label** labels, int nJMP)
+{
+    for (int num = 0; num < nJMP; num++)
+        if (!strcmp(str, (*labels)[num].mark))
+            return num;
 
     return NOTFOUND;
 }
@@ -238,17 +286,29 @@ int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)
     assert (labels != NULL);
     assert (*labels != NULL);
     assert (point >= 0);
+    assert (*nJMP < NUMLBL);
 
     if (!CheckRepeat(str, labels, *nJMP))
     {
         (*labels)[*nJMP].ip = point;
         strcpy((*labels)[*nJMP].mark, str);
+        (*labels)[*nJMP].status = BADLBL;
 
         (*nJMP)++;
         return NOMISTAKE;
     }
     else
         return MISTAKE;
+}
+
+int CallAndRet(char* str, int point, struct Label** labels, int nJMP, Stack* stkCall)
+{
+    int num = FindLabel(str, labels, nJMP);
+
+    if ((*labels)[num].status != GOODLBL)
+        StackPush(stkCall, (*labels)[num].status);
+
+    return NOMISTAKE;
 }
 
 int CheckRepeat(char* str, struct Label** labels, int nJMP)
@@ -279,7 +339,7 @@ int CheckLabels(struct Label** labels, int nJMP)
 {
     for (int index = 0; index < nJMP; index++)
     {
-        if ((*labels)[index].status == 0)
+        if ((*labels)[index].status == BADLBL)
         {
             printf("%s is unknown command!\n", (*labels)[index].mark);
             fprintf(logAsm, "%s is unknown command!\n", (*labels)[index].mark);

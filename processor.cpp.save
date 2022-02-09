@@ -15,6 +15,7 @@ int Execute(const char* BINCODE)
     while (true)
     {
         if (*(cpu.RAM + cpu.ip) == (char) CMD_HLT)
+        
             break;
 
         CheckCmd(&cpu);
@@ -77,6 +78,7 @@ int ProcDtor(CPU* pcpu)
 
     StackDtor(&pcpu->stk);
     free(pcpu->RAM);
+    pcpu->Mem = NULL;
     DestReg(pcpu);
     pcpu->ip = DESTROYED;
 }
