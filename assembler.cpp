@@ -1,52 +1,52 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, ...)                                                         \
-    if (!stricmp((strings + index)->str, #name))                                        \
-    {                                                                                   \
-        *(codeMassive + *size) = (char) num;                                   \
-        *size += sizeof(char);                                                          \
-                                                                                        \
-        if ((num & 0x40) && (num & 0x80))                                               \
-        {                                                                                \
-            if (*nPass == FIRSTPASS)                                \
-            {                                                       \
-                index++;                                                                \
-                *size += sizeof(int);                                                     \
-                if (!stricmp((strings + index)->str, "RET"))                         \
-                    index--;                                                         \
-                                                                                      \
-                continue;                                                              \
-            }                                                                           \
+#define DEF_CMD(name, num, ...)                                                                         \
+    if (!stricmp((strings + index)->str, #name))                                                        \
+    {                                                                                                   \
+        *(codeMassive + *size) = (char) num;                                                            \
+        *size += sizeof(char);                                                                          \
+                                                                                                        \
+        if ((num & 0x40) && (num & 0x80))                                                               \
+        {                                                                                               \
+            if (*nPass == FIRSTPASS)                                                                    \
+            {                                                                                           \
+                index++;                                                                                \
+                *size += sizeof(int);                                                                   \
+                if (!stricmp((strings + index)->str, "RET"))                                            \
+                    index--;                                                                            \
+                                                                                                        \
+                continue;                                                                               \
+            }                                                                                           \
                                                                                                         \
             ERROR |= CheckTypeJmp(#name, strings, &index, codeMassive, size, labels, *nJMP, &stkCall);  \
                                                                                                         \
             continue;                                                                                   \
-        }                                                                                   \
-                                                                                            \
-        if (num & 0x10)                                                                     \
-        {                                                                                   \
-            index++;                                                                   \
-            SkipTabs(strings, &index);                                                   \
-                                                                                           \
-            ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);         \
-                                                                                            \
-            continue;                                                                       \
-        }                                                                           \
-                                                                                    \
-        continue;                                                                   \
+        }                                                                                               \
+                                                                                                        \
+        if (num & 0x10)                                                                                 \
+        {                                                                                               \
+            index++;                                                                                    \
+            SkipTabs(strings, &index);                                                                  \
+                                                                                                        \
+            ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);                      \
+                                                                                                        \
+            continue;                                                                                   \
+        }                                                                                               \
+                                                                                                        \
+        continue;                                                                                       \
     }
 
 static const char* BINCODE = "binCode.bin";
 
 char* Assembler(const char* CMD)
 {
-    size_t  sizeBuf = GetSizeBuf(CMD);
-    char*   buffer  = CreateBuf(&sizeBuf, CMD);
+    size_t  sizeBuf = GetSizeBuf(CMD);                                                           //from "SortText.h"
+    char*   buffer  = CreateBuf(&sizeBuf, CMD);                                                  //from "SortText.h"
 
     size_t numLines          = NumberOfLines (buffer, sizeBuf);
-    struct pointStr* strings = CrtorStrs (numLines, sizeBuf, buffer);
+    struct pointStr* strings = CrtorStrs (numLines, sizeBuf, buffer);                            //from "SortText.h"
 
-    char*  codeMassive   = (char*) calloc (numLines + 1, sizeof(int));
+    char*  codeMassive   = (char*)         calloc (numLines + 1, sizeof(int));
     struct Label* labels = (struct Label*) calloc (NUMLBL, sizeof(struct Label));
 
     int sizeCode = STARTSIZE;
@@ -63,7 +63,6 @@ char* Assembler(const char* CMD)
     FILE* binCode = fopen(BINCODE, "wb");
 
     assert (fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
-
     assert (fclose(binCode) == 0);
 
     free(codeMassive);
@@ -112,8 +111,7 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
 
     for (int index = 0; index < numLines; index++)
     {
-        if (strlen((strings + index)->str) == 0)
-            continue;
+        SkipTabs(strings, &index);
 
         HLTFLG |= CheckHLT((strings + index)->str);
 
@@ -132,7 +130,7 @@ int Assembling(struct pointStr* strings, char* codeMassive, int* size, int numLi
         LogHLT(HLTFLG);
     }
 
-    StackDtor(&stkCall);
+    ERROR |= CheckStk(&stkCall);
 
     (*nPass)++;
 
@@ -146,7 +144,7 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
     assert (size != NULL);
     assert (*size >= 0);
 
-    if (char result = CheckRegs(str))
+    if (char result = CheckOnRegs(str))
     {
         *(codeMassive + *size - 1) = (char) num | (1 << 5);
         *(codeMassive + *size) = result;
@@ -158,7 +156,7 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
 
     if (int value = CheckOnNum(str))
     {
-        int check = CheckCorrect(num);                         //Äëÿ POP
+        int check = CheckArgOnNum(num);                         //Äëÿ POP
 
         *((int*) (codeMassive + *size)) = value;
         *size += sizeof(int);
@@ -171,7 +169,7 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
 
 int SkipTabs(struct pointStr* strings, int* index)
 {
-    while (strlen((strings + *index)->str) == 0)
+    while (!strlen((strings + *index)->str))
         (*index)++;
 }
 
@@ -194,7 +192,7 @@ int WorkWthCall(struct pointStr* strings, int* index, char* codeMassive, int* si
     (*index)++;
     SkipTabs(strings, index);
 
-    int num = FindLabel((strings + *index)->str, labels, nJMP);
+    int num = FindNumLabel((strings + *index)->str, labels, nJMP);
     if (num != NOTFOUND)
     {
         *((int*) (codeMassive + *size)) = (*labels)[num].ip;
@@ -221,7 +219,7 @@ int WorkWthJMP(char* str, char* codeMassive, int* size, struct Label** labels, i
         return NOMISTAKE;
     }
 
-    int num = FindMark(str, labels, nJMP);
+    int num = FindMarkLabel(str, labels, nJMP);
     if (num != NOTFOUND)
     {
         *((int*) (codeMassive + *size)) = num;
@@ -242,24 +240,9 @@ int WorkWthRET(char* codeMassive, int* size, struct Label** labels, Stack* stkCa
     *size += sizeof(int);
 
     return NOMISTAKE;
-
-    /*int IP = (*labels)[NUMLBL].ip;
-
-    if (IP != STip)
-    {
-        *((int*) (codeMassive + *size)) = IP;
-        *size += sizeof(int);
-
-        return NOMISTAKE;
-    } */
-
-    printf("Func error!\n");
-    fprintf(logAsm, "Func error\n");
-
-    return MISTAKE;
 }
 
-int FindMark(char* str, struct Label** labels, int nJMP)
+int FindMarkLabel(char* str, struct Label** labels, int nJMP)
 {
     for (int num = 0; num < nJMP; num++)
         if (!strcmp(str, (*labels)[num].mark))
@@ -271,7 +254,7 @@ int FindMark(char* str, struct Label** labels, int nJMP)
     return NOTFOUND;
 }
 
-int FindLabel(char* str, struct Label** labels, int nJMP)
+int FindNumLabel(char* str, struct Label** labels, int nJMP)
 {
     for (int num = 0; num < nJMP; num++)
         if (!strcmp(str, (*labels)[num].mark))
@@ -288,7 +271,7 @@ int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)
     assert (point >= 0);
     assert (*nJMP < NUMLBL);
 
-    if (!CheckRepeat(str, labels, *nJMP))
+    if (!CheckRepeatLbl(str, labels, *nJMP))
     {
         (*labels)[*nJMP].ip = point;
         strcpy((*labels)[*nJMP].mark, str);
@@ -303,7 +286,7 @@ int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)
 
 int CallAndRet(char* str, int point, struct Label** labels, int nJMP, Stack* stkCall)
 {
-    int num = FindLabel(str, labels, nJMP);
+    int num = FindNumLabel(str, labels, nJMP);
 
     if ((*labels)[num].status != GOODLBL)
         StackPush(stkCall, (*labels)[num].status);
@@ -311,7 +294,7 @@ int CallAndRet(char* str, int point, struct Label** labels, int nJMP, Stack* stk
     return NOMISTAKE;
 }
 
-int CheckRepeat(char* str, struct Label** labels, int nJMP)
+int CheckRepeatLbl(char* str, struct Label** labels, int nJMP)
 {
     if (CheckOnNum(str))
     {
@@ -368,6 +351,7 @@ int CheckOnNum(char* str)
 {
     int value = 0;
     char checkEnd = 0;
+
     if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
         return value;
     else
@@ -397,7 +381,7 @@ int CheckCmd(char* str, int j)
     return NOMISTAKE;
 }
 
-char CheckRegs(char* str)
+char CheckOnRegs(char* str)
 {
     assert (str != NULL);
 
@@ -416,7 +400,7 @@ char CheckRegs(char* str)
     return NREG;
 }
 
-int CheckCorrect(char num)
+int CheckArgOnNum(char num)
 {
     if (num & 0x08)
     {
@@ -424,6 +408,23 @@ int CheckCorrect(char num)
 
         return MISTAKE;
     }
+
+    return NOMISTAKE;
+}
+
+int CheckStk(Stack* stkCall)
+{
+    if (stkCall->size != 0)
+    {
+        StackDtor(stkCall);
+
+        printf("function error!\n");
+        fprintf(logFile, "function error!\n");
+
+        return MISTAKE;
+    }
+
+    StackDtor(stkCall);
 
     return NOMISTAKE;
 }

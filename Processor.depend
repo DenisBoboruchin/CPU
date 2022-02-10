@@ -58,11 +58,11 @@
 	"assembler.h"
 	"commands.h"
 
-1644438950 source:c:\programming\codeblocks\project\processor\proc\cpu\assembler.cpp
+1644518431 source:c:\programming\codeblocks\project\processor\proc\cpu\assembler.cpp
 	"assembler.h"
 	"commands.h"
 
-1644429022 c:\programming\codeblocks\project\processor\proc\cpu\assembler.h
+1644518503 c:\programming\codeblocks\project\processor\proc\cpu\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -90,12 +90,12 @@
 	"assembler.h"
 	"commands.h"
 
-1644434811 source:c:\programming\codeblocks\project\processor\proc\cpu\main.cpp
+1644440258 source:c:\programming\codeblocks\project\processor\proc\cpu\main.cpp
 	<stdio.h>
 	"processor.h"
 	"assembler.h"
 
-1644414956 c:\programming\codeblocks\project\processor\proc\cpu\processor.h
+1644440258 c:\programming\codeblocks\project\processor\proc\cpu\processor.h
 	<stdio.h>
 	<assert.h>
 	<math.h>
@@ -111,7 +111,7 @@
 1644414956 source:c:\programming\codeblocks\project\processor\proc\cpu\mystack.cpp
 	"MyStack.h"
 
-1644438829 source:c:\programming\codeblocks\project\processor\proc\cpu\processor.cpp
+1644440258 source:c:\programming\codeblocks\project\processor\proc\cpu\processor.cpp
 	"processor.h"
 	"commands.h"
 

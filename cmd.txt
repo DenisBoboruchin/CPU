@@ -4,6 +4,8 @@ in
 out
 out
 MIAY
+
+		
 call func1:
 MIAY
 hlt
