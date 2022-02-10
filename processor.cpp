@@ -29,14 +29,12 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
 
     size_t sizeBuf = GetSizeBuf(BINCODE);
 
-    //char* code = (char*) CreateBuf(&sizeBuf, BINCODE);
     char* RAM = (char*) calloc(SIZERAM, sizeof(char));
 
     FILE* CODE = fopen(BINCODE, "r");
     assert (sizeBuf == fread(RAM, sizeof(char), sizeBuf, CODE));
 
     pcpu->RAM = RAM;
-    pcpu->Mem = RAM + sizeBuf;
     pcpu->ip  = STARTINDEX;
 
     ProcAssert(pcpu);
@@ -77,7 +75,6 @@ int ProcDtor(CPU* pcpu)
 
     StackDtor(&pcpu->stk);
     free(pcpu->RAM);
-    pcpu->Mem = NULL;
     DestReg(pcpu);
     pcpu->ip = DESTROYED;
 }

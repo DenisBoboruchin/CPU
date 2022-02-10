@@ -2,7 +2,7 @@ MIAY
 in
 in
 out
-out
+push rcx
 MIAY
 
 		
@@ -12,7 +12,7 @@ hlt
 
 func1:
 in
-in
+pop rcx
 add
 out
 MIAY

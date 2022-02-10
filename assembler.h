@@ -11,22 +11,22 @@
 
 static FILE* logAsm = fopen("logAsm.txt", "w");
 
-const int ERRORCMD  = -17;
-const int MISTAKE   =   1;
-const int NOMISTAKE =   0;
+const int   ERRORCMD    = -17;
+const int   MISTAKE     =   1;
+const int   NOMISTAKE   =   0;
+const int   NOTFOUND    =  -1;
 
-const int NOTFOUND  = -1;
+const int   FIRSTPASS   =   1;
+const int   SECONDPASS  =   2;
+const int   STARTSIZE   =   0;
+const int   STARTnJMP   =   0;
 
-const int   FIRSTPASS   =  1;
-const int   SECONDPASS  =  2;
-const int   STARTSIZE   =  0;
-const int   STARTnJMP   =  0;
-
-const char  RAX     = 1;
-const char  RBX     = 2;
-const char  RCX     = 3;
-const char  RDX     = 4;
-const char  NREG    = 0;
+const char  RAX     =   1;
+const char  RBX     =   2;
+const char  RCX     =   3;
+const char  RDX     =   4;
+const char  NOTREG  =   0;
+const char  NUMREG  =   5;
 
 const int NUMLBL    =  100;
 const int MAX_MRKSZ =   15;

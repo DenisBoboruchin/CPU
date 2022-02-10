@@ -1,39 +1,39 @@
 #include "assembler.h"
 
-#define DEF_CMD(name, num, ...)                                                         \
-    if (!stricmp((strings + index)->str, #name))                                        \
-    {                                                                                   \
-        *(codeMassive + *size) = (char) num;                                   \
-        *size += sizeof(char);                                                          \
-                                                                                        \
-        if ((num & 0x40) && (num & 0x80))                                               \
-        {                                                                                \
-            if (*nPass == FIRSTPASS)                                \
-            {                                                       \
-                index++;                                                                \
-                *size += sizeof(int);                                                     \
-                if (!stricmp((strings + index)->str, "RET"))                         \
-                    index--;                                                         \
-                                                                                      \
-                continue;                                                              \
-            }                                                                           \
+#define DEF_CMD(name, num, ...)                                                                         \
+    if (!stricmp((strings + index)->str, #name))                                                        \
+    {                                                                                                   \
+        *(codeMassive + *size) = (char) num;                                                            \
+        *size += sizeof(char);                                                                          \
+                                                                                                        \
+        if ((num & 0x40) && (num & 0x80))                                                               \
+        {                                                                                               \
+            if (*nPass == FIRSTPASS)                                                                    \
+            {                                                                                           \
+                index++;                                                                                \
+                *size += sizeof(int);                                                                   \
+                if (!stricmp((strings + index)->str, "RET"))                                            \
+                    index--;                                                                            \
+                                                                                                        \
+                continue;                                                                               \
+            }                                                                                           \
                                                                                                         \
             ERROR |= CheckTypeJmp(#name, strings, &index, codeMassive, size, labels, *nJMP, &stkCall);  \
                                                                                                         \
             continue;                                                                                   \
-        }                                                                                   \
-                                                                                            \
-        if (num & 0x10)                                                                     \
-        {                                                                                   \
-            index++;                                                                   \
-            SkipTabs(strings, &index);                                                   \
-                                                                                           \
-            ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);         \
-                                                                                            \
-            continue;                                                                       \
-        }                                                                           \
-                                                                                    \
-        continue;                                                                   \
+        }                                                                                               \
+                                                                                                        \
+        if (num & 0x10)                                                                                 \
+        {                                                                                               \
+            index++;                                                                                    \
+            SkipTabs(strings, &index);                                                                  \
+                                                                                                        \
+            ERROR |= CheckTypeARG((strings + index)->str, codeMassive, size, num);                      \
+                                                                                                        \
+            continue;                                                                                   \
+        }                                                                                               \
+                                                                                                        \
+        continue;                                                                                       \
     }
 
 static const char* BINCODE = "binCode.bin";
@@ -175,6 +175,14 @@ int SkipTabs(struct pointStr* strings, int* index)
 
 int CheckTypeJmp(const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP, Stack* stkCall)
 {
+    assert (name != NULL);
+    assert (strings != NULL);
+    assert (index != NULL);
+    assert (*index >= 0);
+    assert (codeMassive != NULL);
+    assert (*size >= 0);
+    assert (nJMP >= 0);
+
     if (!stricmp("CALL", name))
         return WorkWthCall(strings, index, codeMassive, size, labels, nJMP);
 
@@ -385,6 +393,11 @@ char CheckOnRegs(char* str)
 {
     assert (str != NULL);
 
+    if ((strlen(str) != 3) || (str[0] != 'r') || (str[2] != 'x'))
+        return NREG;
+    
+    for (int i = 0; i < )
+
     if (!stricmp(str, "rax"))
         return RAX;
 
@@ -396,8 +409,6 @@ char CheckOnRegs(char* str)
 
     if (!stricmp(str, "rdx"))
         return RDX;
-
-    return NREG;
 }
 
 int CheckArgOnNum(char num)

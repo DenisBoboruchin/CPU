@@ -175,6 +175,14 @@ int SkipTabs(struct pointStr* strings, int* index)
 
 int CheckTypeJmp(const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP, Stack* stkCall)
 {
+    assert (name != NULL);
+    assert (strings != NULL);
+    assert (index != NULL);
+    assert (*index >= 0);
+    assert (codeMassive != NULL);
+    assert (*size >= 0);
+    assert (nJMP >= 0);
+
     if (!stricmp("CALL", name))
         return WorkWthCall(strings, index, codeMassive, size, labels, nJMP);
 
@@ -385,19 +393,14 @@ char CheckOnRegs(char* str)
 {
     assert (str != NULL);
 
-    if (!stricmp(str, "rax"))
-        return RAX;
+    if ((strlen(str) != 3) || (str[0] != 'r') || (str[2] != 'x'))
+        return NOTREG;
 
-    if (!stricmp(str, "rbx"))
-        return RBX;
+    for (int i = 0; i < NUMREG; i++)
+        if (str[1] == ('a' + i))
+            return (i + 1);
 
-    if (!stricmp(str, "rcx"))
-        return RCX;
-
-    if (!stricmp(str, "rdx"))
-        return RDX;
-
-    return NREG;
+    return NOTREG;
 }
 
 int CheckArgOnNum(char num)
