@@ -2,27 +2,10 @@ MIAY
 in
 in
 out
-push rcx
-MIAY
-
-		
-call func1:
+push [12]
+in
+out
+pop [12]
+out
 MIAY
 hlt
-
-func1:
-in
-pop rcx
-add
-out
-MIAY
-call func2:
-MIAY
-ret
-
-func2:
-push 5
-push 7
-mul
-out
-ret

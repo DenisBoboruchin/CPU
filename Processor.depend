@@ -58,11 +58,11 @@
 	"assembler.h"
 	"commands.h"
 
-1644522556 source:c:\programming\codeblocks\project\processor\proc\cpu\assembler.cpp
+1644524338 source:c:\programming\codeblocks\project\processor\proc\cpu\assembler.cpp
 	"assembler.h"
 	"commands.h"
 
-1644522393 c:\programming\codeblocks\project\processor\proc\cpu\assembler.h
+1644523737 c:\programming\codeblocks\project\processor\proc\cpu\assembler.h
 	<stdio.h>
 	<string.h>
 	<assert.h>
@@ -84,7 +84,7 @@
 1644414956 c:\programming\codeblocks\project\processor\proc\cpu\enum.h
 	"commands.h"
 
-1644439018 c:\programming\codeblocks\project\processor\proc\cpu\commands.h
+1644525494 c:\programming\codeblocks\project\processor\proc\cpu\commands.h
 
 1644438537 source:c:\programming\codeblocks\project\processor\proc\cpu\disassembler.cpp
 	"assembler.h"
@@ -95,7 +95,7 @@
 	"processor.h"
 	"assembler.h"
 
-1644522032 c:\programming\codeblocks\project\processor\proc\cpu\processor.h
+1644525456 c:\programming\codeblocks\project\processor\proc\cpu\processor.h
 	<stdio.h>
 	<assert.h>
 	<math.h>
@@ -111,7 +111,7 @@
 1644414956 source:c:\programming\codeblocks\project\processor\proc\cpu\mystack.cpp
 	"MyStack.h"
 
-1644521666 source:c:\programming\codeblocks\project\processor\proc\cpu\processor.cpp
+1644525456 source:c:\programming\codeblocks\project\processor\proc\cpu\processor.cpp
 	"processor.h"
 	"commands.h"
 

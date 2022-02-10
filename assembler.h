@@ -36,7 +36,7 @@ const int BADLBL    = -123;
 struct Label
 {
     int     ip                  = BADLBL;
-    char    mark[MAX_MRKSZ]     = {};
+    char    mark[MAX_MRKSZ]     =     {};
     int     status              = BADLBL;
 };
 
@@ -46,6 +46,7 @@ int     Assembling      (struct pointStr* strings, char* codeMassive, int* size,
 int     CheckTypeARG    (char* str, char* codeMassive, int* size, int num);
 int     CheckCmd        (char* str, int j);
 char    CheckOnRegs     (char* str);
+int     CheckOnMem      (char* str);
 int     CheckOnNum      (char* str);
 int     SkipTabs        (struct pointStr* strings, int* index);
 

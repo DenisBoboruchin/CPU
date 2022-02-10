@@ -11,13 +11,15 @@
 
 const int   DESTROYED   = -333;
 const int   NUMREGS     =    5;
-const int   SIZERAM     = 2048;
-const int   MAXCODESIZE =  500;
 
-const int   ERRORINPUT  =    0;
-const int   GOODINPUT   =    1;
+const int   SIZERAM     =  0x10000;
+const int   STARTMEM    =  0X01000;
+const int   STARTGPU    =  0x0f000;
 
-const int   STARTINDEX  =    0;
+const int   ERRORINPUT  =   0;
+const int   GOODINPUT   =   1;
+
+const int   STARTINDEX  =   0;
 
 struct CPU
 {
@@ -30,6 +32,7 @@ struct CPU
 int     Execute     (const char* BINCODE);
 int     ProcCtor    (CPU* pcpu, const char* BINCODE);
 void    CheckCmd    (CPU* pcpu);
+void    CheckAccess (int  cell);
 int     ProcAssert  (CPU* pcpu);
 int     ProcDtor    (CPU* pcpu);
 int     DestReg     (CPU* pcpu);

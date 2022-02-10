@@ -117,6 +117,34 @@ DEF_CMD(RPOP , 0b00111010,   1,
     break;
 })
 ///////////////////////////////////////////////////////////////////
+DEF_CMD(MPUSH, 0b01010001,   1,
+{
+    pcpu->ip++;
+
+    int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
+    CheckAccess(STARTMEM + NumCell);
+
+    *((int*) (pcpu->RAM + STARTMEM + NumCell)) = StackPop(&pcpu->stk);
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+
+DEF_CMD(MPOP , 0b01011010,   1,
+{
+    pcpu->ip++;
+
+    int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
+    CheckAccess(STARTMEM + NumCell);
+
+    int value = *((int*) (pcpu->RAM + STARTMEM + NumCell));
+
+    StackPush(&pcpu->stk, value);
+
+    pcpu->ip += sizeof(int);
+    break;
+})
+///////////////////////////////////////////////////////////////////
 DEF_CMD(JMP  , 0b11000000,   1,
 {
     pcpu->ip++;
@@ -253,9 +281,9 @@ DEF_CMD(RET   , 0b11001000,   1,
 ///////////////////////////////////////////////////////////////////
 DEF_CMD(MIAY , 0b10001111,   1,
 {
-    pcpu->ip++;
-
     printf("MIAY!!\n");
+
+    pcpu->ip++;
     break;
 })
 

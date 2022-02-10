@@ -66,7 +66,13 @@ int ProcAssert(CPU* pcpu)
     assert (pcpu != NULL);
     assert (pcpu->RAM != NULL);
     assert (pcpu->ip >= 0);
-    assert (pcpu->ip < MAXCODESIZE);
+    assert (pcpu->ip < STARTMEM - 1);
+}
+
+void CheckAccess (int  cell)
+{
+    if ((cell < STARTMEM) || (cell > STARTGPU))
+        assert (!"ERROR ACCESS!!!\n");
 }
 
 int ProcDtor(CPU* pcpu)

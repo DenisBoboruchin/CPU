@@ -1,0 +1,26 @@
+MIAY
+in
+in
+out
+push rcx
+MIAY	
+call func1:
+MIAY
+hlt
+
+func1:
+in
+pop rcx
+add
+out
+MIAY
+call func2:
+MIAY
+ret
+
+func2:
+push 5
+push 7
+mul
+out
+ret

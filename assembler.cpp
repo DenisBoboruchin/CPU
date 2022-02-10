@@ -154,7 +154,9 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
         return NOMISTAKE;
     }
 
-    if (int value = CheckOnNum(str))
+    int value = 0;
+
+    if (value = CheckOnNum(str))
     {
         int check = CheckArgOnNum(num);                         //Äëÿ POP
 
@@ -162,6 +164,16 @@ int CheckTypeARG(char* str, char* codeMassive, int* size, int num)
         *size += sizeof(int);
 
         return check;
+    }
+
+    if (value = CheckOnMem(str))
+    {
+        *(codeMassive + *size - 1) = (char) num | (1 << 6);
+        *((int*) (codeMassive + *size)) = value;
+
+        *size += sizeof(int);
+
+        return NOMISTAKE;
     }
 
     return CheckCmd(str, ERRORCMD);
@@ -288,8 +300,8 @@ int AddToLabel(char* str, int point, struct Label** labels, int* nJMP)
         (*nJMP)++;
         return NOMISTAKE;
     }
-    else
-        return MISTAKE;
+
+    return MISTAKE;
 }
 
 int CallAndRet(char* str, int point, struct Label** labels, int nJMP, Stack* stkCall)
@@ -362,8 +374,8 @@ int CheckOnNum(char* str)
 
     if (sscanf(str, "%d%c", &value, &checkEnd) == 1)
         return value;
-    else
-        return 0;
+
+    return 0;
 }
 
 int CheckCmd(char* str, int j)
@@ -387,6 +399,19 @@ int CheckCmd(char* str, int j)
     }
 
     return NOMISTAKE;
+}
+
+int CheckOnMem(char* str)
+{
+    char left   = 0;
+    char right  = 0;
+    int  value  = 0;
+
+    if (sscanf(str, "%c%d%c", &left, &value, &right) == 3)
+        if ((left == '[') && (right == ']'))
+            return value;
+
+    return 0;
 }
 
 char CheckOnRegs(char* str)
