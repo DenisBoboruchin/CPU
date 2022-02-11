@@ -1,0 +1,11 @@
+MIAY
+in
+in
+call :add
+MIAY
+out
+hlt
+
+:add
+add
+ret
