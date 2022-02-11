@@ -1,6 +1,10 @@
 MIAY
-in
-in
+push 5
+push [123]
+push 15
+push [130]
+pop [123]
+pop [130]
 call :add
 MIAY
 out

@@ -124,6 +124,8 @@ DEF_CMD(MPUSH, 0b01010001,   1,
     int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
     CheckAccess(STARTMEM + NumCell);
 
+    Sleep(300);
+
     *((int*) (pcpu->RAM + STARTMEM + NumCell)) = StackPop(&pcpu->stk);
 
     pcpu->ip += sizeof(int);
@@ -136,6 +138,8 @@ DEF_CMD(MPOP , 0b01011010,   1,
 
     int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
     CheckAccess(STARTMEM + NumCell);
+
+    Sleep(300);
 
     int value = *((int*) (pcpu->RAM + STARTMEM + NumCell));
 

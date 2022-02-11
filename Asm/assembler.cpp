@@ -70,7 +70,7 @@ char* Assembler(const char* CMD)
     free(strings);
     free(labels);
 
-    Verificat(ERRORFLAG);
+    Verification(ERRORFLAG);
 
     return codeMassive;
 }
@@ -476,7 +476,7 @@ void LogHLT(int HLTFLG)
     }
 }
 
-void Verificat(int ERROR)
+void Verification(int ERROR)
 {
     if (ERROR)
     {

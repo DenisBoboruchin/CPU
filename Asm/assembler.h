@@ -53,7 +53,7 @@ int     SkipTabs        (struct pointStr* strings, int* index);
 int     CheckArgOnNum   (char num);
 int     CheckHLT        (char* str);
 void    LogHLT          (int HLTFLG);
-void    Verificat       (int ERROR);
+void    Verification       (int );
 
 int     DisAssembler    (const char* BINCODE);
 void    Disasembling    (FILE* disasmCmd, char* code, int* ip, int* index);

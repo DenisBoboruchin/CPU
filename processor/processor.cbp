@@ -31,6 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../Asm/assembler.cpp" />
+		<Unit filename="../Asm/assembler.h" />
+		<Unit filename="../DisAsm/assembler.h" />
+		<Unit filename="../DisAsm/disassembler.cpp" />
+		<Unit filename="../MyStack.cpp" />
+		<Unit filename="../MyStack.h" />
+		<Unit filename="../Proc/processor.cpp" />
+		<Unit filename="../Proc/processor.h" />
+		<Unit filename="../SortText.cpp" />
+		<Unit filename="../SortText.h" />
+		<Unit filename="../commands.h" />
+		<Unit filename="../enum.h" />
+		<Unit filename="../main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
