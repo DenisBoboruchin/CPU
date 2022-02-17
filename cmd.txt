@@ -1,15 +1,24 @@
 MIAY
+call innn
 push 5
-push [123]
 push 15
-push [130]
-pop [123]
-pop [130]
 call :add
 MIAY
-out
+MIAY
+call innn
 hlt
 
 :add
-add
+	add
+	out
+
+	MIAY
+	MIAY
+ret
+
+innn
+in
+in
+mul 
+out
 ret

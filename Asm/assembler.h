@@ -5,7 +5,6 @@
 #include <string.h>
 #include <assert.h>
 
-#include "../MyStack.h"
 #include "../SortText.h"
 #include "../enum.h"
 
@@ -53,22 +52,19 @@ int     SkipTabs        (struct pointStr* strings, int* index);
 int     CheckArgOnNum   (char num);
 int     CheckHLT        (char* str);
 void    LogHLT          (int HLTFLG);
-void    Verification       (int );
+void    Verification    (int ERR);
 
 int     DisAssembler    (const char* BINCODE);
 void    Disasembling    (FILE* disasmCmd, char* code, int* ip, int* index);
 void    NumToReg        (FILE* disasmCmd, int num);
 
-int     CallAndRet      (char* str, int size, struct Label** labels, int nJMP, Stack* stkCall);
 int     AddToLabel      (char* str, int size, struct Label** labels, int* nJMP);
-int     WorkWthCall     (struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP);
+int     WorkWthCall     (char* str, char* codeMassive, int* point, struct Label** labels, int nJMP);
 int     WorkWthJMP      (char* str, char* codeMassive, int* point, struct Label** labels, int nJMP);
-int     CheckTypeJmp    (const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP, Stack* stkCall);
-int     WorkWthRET      (char* codeMassive, int* size, struct Label** labels, Stack* stkCall);
+int     CheckTypeJmp    (const char* name, struct pointStr* strings, int* index, char* codeMassive, int* size, struct Label** labels, int nJMP);
 int     FindNumLabel    (char* str, struct Label** labels, int nJMP);
 int     FindMarkLabel   (char* str, struct Label** labels, int nJMP);
 int     CheckLabels     (struct Label** labels, int nJMP);
-int     CheckStk        (Stack* stkCall);
 int     CheckRepeatLbl  (char* str, struct Label** labels, int nJMP);
 int     OutPutLabel     (struct Label* labels, int nJMP);
 

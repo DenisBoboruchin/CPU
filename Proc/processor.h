@@ -32,7 +32,7 @@ struct CPU
 
 int     Execute     (const char* BINCODE);
 int     ProcCtor    (CPU* pcpu, const char* BINCODE);
-void    CheckCmd    (CPU* pcpu);
+void    CheckCmd    (CPU* pcpu, Stack* stkForCall);
 void    CheckAccess (int  cell);
 int     ProcAssert  (CPU* pcpu);
 int     ProcDtor    (CPU* pcpu);

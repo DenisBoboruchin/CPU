@@ -268,6 +268,7 @@ DEF_CMD(JNE   , 0b11000110,   1,
 DEF_CMD(CALL   , 0b11000111,   1,
 {
     pcpu->ip++;
+    StackPush(stkForCall, pcpu->ip + sizeof(int));
 
     pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
 
@@ -276,9 +277,7 @@ DEF_CMD(CALL   , 0b11000111,   1,
 
 DEF_CMD(RET   , 0b11001000,   1,
 {
-    pcpu->ip++;
-
-    pcpu->ip = *((int*) (pcpu->RAM + pcpu->ip));
+    pcpu->ip = StackPop(stkForCall);
 
     break;
 })

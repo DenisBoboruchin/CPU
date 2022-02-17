@@ -11,15 +11,18 @@ int Execute(const char* BINCODE)
 
     ProcCtor(&cpu, BINCODE);
 
+    Stack stkForCall = {};
+    StackCtor(&stkForCall);
 
     while (true)
     {
         if (*(cpu.RAM + cpu.ip) == (char) CMD_HLT)
             break;
 
-        CheckCmd(&cpu);
+        CheckCmd(&cpu, &stkForCall);
     }
 
+    StackDtor(&stkForCall);
     ProcDtor(&cpu);
 }
 
@@ -40,7 +43,7 @@ int ProcCtor(CPU* pcpu, const char* BINCODE)
     ProcAssert(pcpu);
 }
 
-void CheckCmd(CPU* pcpu)
+void CheckCmd(CPU* pcpu, Stack* stkForCall)
 {
     ProcAssert(pcpu);
 
