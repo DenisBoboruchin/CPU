@@ -5,6 +5,6 @@ ____
 
 #### Чтобы клонировать репозиторий используйте:
 ```
-git clone https://github.com/DenisBoboruchin/akinator
+git clone https://github.com/DenisBoboruchin/CPU/tree/master
 ```
 ____
