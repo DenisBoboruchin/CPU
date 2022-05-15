@@ -1,12 +1,12 @@
 #include "assembler.h"
 
 #define DEF_CMD(name, num, ...)                                                                         \
-    if (!stricmp((strings + index)->str, #name))                                                        \
+    if (!strcmp((strings + index)->str, #name))                                                         \
     {                                                                                                   \
         *(codeMassive + *size) = (char) num;                                                            \
         *size += sizeof(char);                                                                          \
                                                                                                         \
-        if ((num & 0x40) && (num & 0x80) && (stricmp(#name, "ret")))                                    \
+        if ((num & 0x40) && (num & 0x80) && (strcmp(#name, "RET")))                                     \
         {                                                                                               \
             if (*nPass == FIRSTPASS)                                                                    \
             {                                                                                           \
@@ -35,13 +35,13 @@
         continue;                                                                                       \
     }
 
-static const char* BINCODE = "../binCode.bin";
+static const char* BINCODE = "binCode.bin";
 
 char* Assembler(const char* CMD)
 {
     size_t  sizeBuf = GetSizeBuf(CMD);                                                           //from "SortText.h"
     char*   buffer  = CreateBuf(&sizeBuf, CMD);                                                  //from "SortText.h"
-
+   
     size_t numLines          = NumberOfLines (buffer, sizeBuf);
     struct pointStr* strings = CrtorStrs (numLines, sizeBuf, buffer);                            //from "SortText.h"
 
@@ -52,8 +52,11 @@ char* Assembler(const char* CMD)
     int nJMP     = STARTnJMP;
     int nPass    = FIRSTPASS;
 
-    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
-    ERRORFLAG    |= Assembling(strings, codeMassive, &sizeCode, numLines, &labels, &nJMP, &nPass);
+    printf ("start first\n");
+    int ERRORFLAG = Assembling(strings, codeMassive, &sizeCode, (int) numLines, &labels, &nJMP, &nPass);
+    printf ("start second\n");
+    ERRORFLAG    |= Assembling(strings, codeMassive, &sizeCode, (int) numLines, &labels, &nJMP, &nPass);
+    printf ("end asemb\n");
 
     OutPutLabel(labels, nJMP);
 
@@ -61,13 +64,14 @@ char* Assembler(const char* CMD)
 
     FILE* binCode = fopen(BINCODE, "wb");
 
-    assert (fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == sizeCode + 1);
+    assert ((int) fwrite(codeMassive, sizeof(char), sizeCode + 1, binCode) == (int) sizeCode + 1);
     assert (fclose(binCode) == 0);
 
-    free(codeMassive);
-    free(buffer);
-    free(strings);
-    free(labels);
+    printf ("end\n");
+    //free(codeMassive);
+    //free(buffer);
+    //free(strings);
+    //free(labels);
 
     Verification(ERRORFLAG);
 
@@ -191,7 +195,7 @@ int CheckTypeJmp(const char* name, struct pointStr* strings, int* index, char* c
     (*index)++;
     SkipTabs(strings, index);
 
-    if (!stricmp("CALL", name))
+    if (!strcmp("CALL", name))
         return WorkWthCall((strings + *index)->str, codeMassive, size, labels, nJMP);
 
     return WorkWthJMP((strings + *index)->str, codeMassive, size, labels, nJMP);
@@ -411,7 +415,7 @@ int CheckHLT(char* str)
 {
     assert (str != NULL);
 
-    if (!stricmp(str, "HLT"))
+    if (!strcmp(str, "HLT"))
         return 1;
     else
         return 0;
