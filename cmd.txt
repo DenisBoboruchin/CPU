@@ -1,24 +1,24 @@
 MIAY
-call innn
-push 5
-push 15
-call :add
+CALL innn
+PUSH 5
+PUSH 15
+CALL :add
 MIAY
 MIAY
-call innn
-hlt
+CALL innn
+HLT
 
 :add
-	add
-	out
+	ADD
+	OUT
 
 	MIAY
 	MIAY
-ret
+RET
 
 innn
-in
-in
-mul 
-out
-ret
+IN
+IN
+MUL 
+OUT
+RET

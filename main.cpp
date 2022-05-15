@@ -3,8 +3,8 @@
 #include "Proc/processor.h"
 #include "Asm/assembler.h"
 
-const char* CMD     = "../cmd.txt";
-const char* BINCODE = "../binCode.bin";
+const char* CMD     = "cmdtest.txt";
+const char* BINCODE = "binCode.bin";
 
 int main(void)
 {

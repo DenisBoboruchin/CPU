@@ -1,0 +1,23 @@
+MIAY
+PUSH 10
+CALL :innn
+
+HLT
+
+
+:innn
+	PUSH 1
+	SUB
+	POP  rax
+	PUSH rax
+	OUT
+	PUSH rax
+	PUSH 1
+
+	JE exit
+
+	PUSH rax
+	CALL :innn
+	exit
+	
+RET

@@ -101,7 +101,8 @@ DEF_CMD(RPUSH, 0b00110001,   1,
 {
     pcpu->ip++;
 
-    pcpu->registers[*(pcpu->RAM + pcpu->ip)] = StackPop(&pcpu->stk);
+    //pcpu->registers[*(pcpu->RAM + pcpu->ip)] = StackPop(&pcpu->stk);
+    StackPush(&pcpu->stk, pcpu->registers[*(pcpu->RAM + pcpu->ip)]);
 
     pcpu->ip++;
     break;
@@ -111,7 +112,8 @@ DEF_CMD(RPOP , 0b00111010,   1,
 {
     pcpu->ip++;
 
-    StackPush(&pcpu->stk, pcpu->registers[*(pcpu->RAM + pcpu->ip)]);
+    pcpu->registers[*(pcpu->RAM + pcpu->ip)] = StackPop(&pcpu->stk);
+    //StackPush(&pcpu->stk, pcpu->registers[*(pcpu->RAM + pcpu->ip)]);
 
     pcpu->ip++;
     break;
@@ -124,7 +126,7 @@ DEF_CMD(MPUSH, 0b01010001,   1,
     int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
     CheckAccess(STARTMEM + NumCell);
 
-    Sleep(300);
+    //Sleep(300);
 
     *((int*) (pcpu->RAM + STARTMEM + NumCell)) = StackPop(&pcpu->stk);
 
@@ -139,7 +141,7 @@ DEF_CMD(MPOP , 0b01011010,   1,
     int NumCell = *((int*) (pcpu->RAM + pcpu->ip));
     CheckAccess(STARTMEM + NumCell);
 
-    Sleep(300);
+    //Sleep(300);
 
     int value = *((int*) (pcpu->RAM + STARTMEM + NumCell));
 

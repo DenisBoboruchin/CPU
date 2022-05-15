@@ -23,7 +23,7 @@ struct Stack
     long long int HASHSTACK = 0;
     long long int HASHDATA = 0;
 
-    elem_type* data;
+    int* data;
 
     unsigned long long int RIGHTSTACKCANARY = 0xC0FFEE2;
 };

@@ -75,7 +75,7 @@ struct pointStr* CrtorStrs(const size_t numLines, const size_t sizeBuf, char* bu
     assert (numLines > 0);
     assert (sizeBuf > 0);
 
-    struct pointStr* strings = (pointStr*)  calloc (numLines + 1, sizeof(pointStr));
+    struct pointStr* strings = (pointStr*)  calloc (numLines + 2, sizeof(pointStr));
     assert (strings != NULL);
 
     strings->str = buffer;

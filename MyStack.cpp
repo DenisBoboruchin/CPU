@@ -12,7 +12,7 @@ int StackCtor(Stack* stk)
     *((unsigned long long int*) (stk->data + stk->capacity)) = RIGHTCANARY;
 
     stk->size = 0;
-    stk->HASHSTACK = 41 * stk->size % 113 + 2 * (stk->capacity - 2) % 337 + 3 * ((int) stk->data - 3) + 337;
+    stk->HASHSTACK = 41 * stk->size % 113 + 2 * (stk->capacity - 2) % 337 + 3 * (- 3) + 337;
 
     STACK_CHECK
 }
@@ -282,7 +282,7 @@ long long int CheckDataHash(const Stack* stk)
 
 long long int CheckStackHash(const Stack* stk)
 {
-    return (long long int) (41 * stk->size % 113 + 2 * (stk->capacity - 2) % 337 + 3 * ((int) stk->data - 3) + 337);
+    return (long long int) (41 * stk->size % 113 + 2 * (stk->capacity - 2) % 337 + 3 * (- 3) + 337);
 }
 
 void OutputData(const Stack* stk)
