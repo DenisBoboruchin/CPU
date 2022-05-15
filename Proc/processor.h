@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
-#include <windows.h>
+//#include <windows.h>
 
 #include "../enum.h"
 #include "../MyStack.h"
